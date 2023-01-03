@@ -18,6 +18,11 @@
     <meta property="og:site_name" content="Glitch Prints - Get your 3D models printed" />
     <meta property="og:description"
         content="Do you have a 3D model you want to print? I can help with that. Let's make this creation into reality!" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Baloo+Thambi+2&family=Metrophobic&family=Roboto+Mono:ital@0;1&display=swap"
+        rel="stylesheet">
     <script type="importmap">
             {
                 "imports": {
@@ -29,8 +34,726 @@
 </head>
 
 <body>
+    <div class="container">
+        <div class="header">
+            <h1>Glitch Prints</h1>
+        </div>
+        <div class="nav">
+            <a href="#about">About Me</a>
+            <a href="#portfolio">Portfolio</a>
+            <a href="#contact">Contact Me</a>
+        </div>
+        <div id="quote">
+            <div class="statContainer"
+                style="width:1000px; height:283px; border:3px solid rgba(0,0,0,1); border-radius:10px; background-color:#FFFFFF; position:absolute; top:0px; left:0px;">
 
+                <div class="stat_box"
+                    style="z-index:2; line-height:30px; height:30px; width:145px; top:0px; left:0px; border:0px;">
+                    <a class="stat_name"
+                        style="height:100%; width:50px; border-radius:10px 0px 0px 0px; border:0px;">Sizes</a>
+                    <div class="stat_value"
+                        style="text-align:left; height:100%; width:calc(100% - 50px); left:50px; top:0px;"><input
+                            id="unit" name="unit" type="radio" value="0" onclick="update_unit()"
+                            checked="checked">mm<input id="unit" name="unit" type="radio" value="1"
+                            onclick="update_unit()">inch</div>
+                </div>
+
+                <div
+                    style="z-index:1; width:350px; height:250px; border:3px solid rgba(0,0,0,1); border-radius:5px; background-color:#FFFFFF; position:absolute; top:30px; left:-3px;">
+
+                    <a
+                        style="font-size:14px; z-index:1; height:20px; position:absolute; bottom:calc(100% + 11px); right:2px;">3</a>
+                    <div class="bvol" style="width:40px;"><output id="unit_bvol"></output>
+                        <output id="box_vol"
+                            style="text-align:right; padding-right:2px; width:85px; line-height:30px; height:30px; background-color:#e3f7e7; position:absolute; top:0px; right:100%;"></output>
+                    </div>
+                    <div class="bvol" style="width:80px; right:115px;">Box vol.:<div class="line1"
+                            style="width:2px; top:0px; right:100%;"></div>
+                    </div>
+
+                    <!-- ### <START> Direct size inputs ### -->
+
+                    <div id="size_inputs"
+                        style="z-index:2; text-align:center; font-family:'Arial'; width:80%; height:70px; position:absolute; left:10%; top:50%;">
+                        or directly input your model sizes
+
+                        <div class="stat_box" style="bottom:0px; left:0px;"><a class="stat_name">width (x)</a>
+                            <input id="x_input" oninput="update_axis()" class="stat_value" value="0" min="0"
+                                type="number" step="1" style="text-align:right; height:15px; width:60%;">
+                            <output id="x_unit" class="stat_value" style="width:34%; left:66%;"></output>
+                        </div>
+                        <div class="stat_box" style="bottom:0px; left:98px;"><a class="stat_name">depth (y)</a>
+                            <input id="y_input" oninput="update_axis()" class="stat_value" value="0" min="0"
+                                type="number" step="1" style="text-align:right; height:15px; width:60%;">
+                            <output id="y_unit" class="stat_value" style="width:34%; left:66%;"></output>
+                        </div>
+                        <div class="stat_box" style="bottom:0px; right:0px;"><a class="stat_name">height (z)</a>
+                            <input id="z_input" oninput="update_axis()" class="stat_value" value="0" min="0"
+                                type="number" step="1" style="text-align:right; height:15px; width:60%;">
+                            <output id="z_unit" class="stat_value" style="width:34%; left:66%;"></output>
+                        </div>
+
+                    </div>
+
+                    <!-- ### <END> Direct size inputs ### -->
+
+                    <!-- ### <START> STL file manager ### -->
+
+                    <div
+                        style="overflow:hidden; border:0; margin:0; width:calc(100%); height:calc(100% - 27px); position:absolute;">
+                        <div id="colour1" style="visibility:hidden; z-index:2; position:absolute; top:0px; left:0px;">
+                        </div>
+                        <input type="file" value="internal file" id="fileselect"
+                            onchange="load_local_file(this.files[0]);" style="opacity:0;">
+                        <iframe name="viewstl" id="vs_iframe"
+                            src="https://www.viewstl.com/?embedded&bgcolor=gray&color=white&noborder=yes&orientation=bottom"
+                            style="height:100%; width:calc(100% + 12px); position:absolute; top:-2px; left:-8px;"></iframe>
+                    </div>
+
+                    <button onclick="refreshIframe('viewstl')"
+                        style="width:90px;height:42px; position:absolute;bottom:0px">Reset STL</button>
+
+                    <div class="line1" style="height:2px; top:206px; left:0px;"></div>
+
+                    <div
+                        style="width:calc(100% - 90px); height:42px; background-color:#FFFFFF; position:absolute; bottom:0px; left:90px;">
+
+                        <div class="line1" style="width:1px; top:0px; left:0px;"></div>
+                        <div class="line1" style="height:2px; top:20px; left:0px;"></div>
+
+                        <a class="b1" style="width:45px; left:0px; top:0px;">Scale:</a>
+                        <input id="scale" oninput="update_axis()" value="100" min="0" type="number" step="5"
+                            style="z-index:1; text-align:right; background-color:#e3f7e7; width:52px; height:14px; position:absolute; left:45px; top:0px;">
+                        <a class="b1" style="width:20px; left:100px; top:0px;">%
+                            <div class="line1" style="width:2px; top:0px; left:100%;"></div>
+                        </a>
+
+                        <div class="b1" style="width:32px; right:0px;"><output id="unit_svol"></output>
+                            <a
+                                style="font-size:12px; z-index:1; height:20px; position:absolute; bottom:calc(100% + 11px); top:0px; right:1px;">3</a>
+                            <output id="shape_vol"
+                                style="overflow:hidden; text-align:right; padding-right:2px; background-color:#e3f7e7; width:44px; height:100%; position:absolute; top:0px; right:100%;"></output>
+                            <div class="b1" style="font-size:12px; width:60px; top:0px; right:calc(100% + 46px);">Shape
+                                vol.:</div>
+                        </div>
+
+                        <a class="b1" style="left:0px; top:21px;">x:
+                            <output id="x" class="axis"></output></a>
+
+                        <a class="b1" style="left:33.3%; top:21px">y:
+                            <output id="y" class="axis"></output></a>
+
+                        <a class="b1" style="left:66.7%; top:21px">z:
+                            <output id="z" class="axis"></output></a>
+
+                    </div>
+                </div>
+
+                <!-- ### <END> STL file manager ### -->
+
+                <div class="line2" style="left:350px; background-color:#000000;">
+                    <div style="width:200px; height:100%; position:absolute; top:0px; left:0px;">
+
+                        <a class="h1">Strength rating<span class="tooltip">• Strength of the product delivered,
+                                featuring relative durability and impact resistance. <br>• A higher rating dictates
+                                greater wall thickness and infill % ('solidness'). <br>• Highly recommended for
+                                permanent-solution models or those to be frequently handled.<br>• 50% rating is close to
+                                what most companies provide.</span></a>
+                        <a class="rating_text" style="top:35px;">Solid</a>
+                        <a class="rating_text" style="bottom:10px;">Shell</a>
+                        <a class="rating_text" style="text-align:left; top:52px; left:40px;">100%</a>
+                        <a class="rating_text" style="text-align:left; bottom:25px; left:40px;">10%</a>
+
+                        <input id="strength" oninput="update_strength()" type="range" orient="vertical" value="50"
+                            min="10" max="100" step="1" />
+                        <output id="strength_rating" class="rating_value"></output>
+                        <div id="strength_image" class="rating_image">
+                            <div class="crosshatch"></div>
+                        </div>
+
+                        <div class="stat_box" style="bottom:38%;"><a class="stat_name">Infill</a>
+                            <output id="infill" class="stat_value"></output>
+                        </div>
+                        <div class="stat_box" style="bottom:20%;"><a class="stat_name">Walls</a>
+                            <output id="walls" class="stat_value"></output>
+                        </div>
+                        <div class="stat_box" style="bottom:2%;"><a class="stat_name"
+                                style="background-color:#d3d5e6;">Quality</a>
+                            <output id="review_strength" class="stat_value" style="background-color:#eff0fa;"></output>
+                        </div>
+
+
+                        <div class="line2">
+                            <div style="width:200px; height:100%; position:absolute; top:0px; left:0px;">
+
+                                <a class="h1">Cosmetic rating<span class="tooltip">• Cosmetic review of the product
+                                        delivered, featuring surface quality and dimensional accuracy. <br>• A higher
+                                        rating dictates manual surface tooling and finer 3D printing. <br>• Highly
+                                        recommended for cosmetic models or shapes / components with grooves. <br>• 50%
+                                        rating is close to what most companies provide.</span></a>
+                                <a class="rating_text" style="top:35px;">Fine</a>
+                                <a class="rating_text" style="bottom:10px;">Rough</a>
+                                <a class="rating_text" style="text-align:left; top:52px; left:40px;">100%</a>
+                                <a class="rating_text" style="text-align:left; bottom:25px; left:40px;">5%</a>
+
+                                <input id="quality" oninput="update_quality()" type="range" orient="vertical" value="50"
+                                    min="5" max="100" step="1" />
+                                <output id="quality_rating" class="rating_value"></output>
+                                <div id="quality_image" class="rating_image"><canvas id="canvas" class="canvas"
+                                        width="80" height="80"></canvas></div>
+
+                                <div class="stat_box" style="bottom:38%;"><a class="stat_name">Tooling</a>
+                                    <output id="surface" class="stat_value"></output>
+                                </div>
+                                <div class="stat_box" style="bottom:20%;"><a class="stat_name">Accuracy</a>
+                                    <output id="accuracy" class="stat_value"></output>
+                                </div>
+                                <div class="stat_box" style="bottom:2%;"><a class="stat_name"
+                                        style="background-color:#d3d5e6;">Quality</a>
+                                    <output id="review_quality" class="stat_value"
+                                        style="background-color:#eff0fa;"></output>
+                                </div>
+
+
+                                <div class="line2">
+                                    <div style="width:250px; height:100%; position:absolute; top:0px; left:0px;">
+
+                                        <!--<a class="h1">Pricing</a>-->
+
+                                        <div class="stat_box"
+                                            style="font-size:21px; line-height:25px; height:50px; width:calc(100% - 6px); border-radius:0px; top:0px; right:0px;">
+                                            <a class="stat_name" style="background-color:#e3f7e7;">Our Price</a>
+                                            <output id="price_ours" class="stat_value"></output>
+                                        </div>
+
+                                        <output id="mass"
+                                            style="z-index:5; font-size:14px; font-style:italic; position:absolute; top:3px; right:3px;"></output>
+
+                                        <div class="stat_box"
+                                            style="overflow:hidden; white-space:nowrap; width:105px; top:64px; left:8px;">
+                                            <a class="stat_name">Competitor</a>
+                                            <output id="price_competitor" class="stat_value"></output>
+                                        </div>
+
+                                        <output id="shipping"
+                                            style="text-align:right; font-style:italic; position:absolute; top:58px; right:5px;"></output>
+
+                                        <div id="colour2" style="position:absolute; top:82px; left:130px;">
+                                            <div class="stat_box"
+                                                style="width:110px; height:30px; position:absolute; top:0px; left:0px;">
+                                                <div class="line1"
+                                                    style="z-index:100; width:2px; left:calc(55% - 1px);"></div>
+                                                <!--<a style="position:relative; left:3px;">Colours:</a>-->
+                                                <div class="dropdown"
+                                                    style="z-index:10; text-align:center; height:100%; width:55%;">
+                                                    <button id="material_colour2" class="wtbo" disabled="disabled"
+                                                        style="background: linear-gradient(65deg, #AAAAAA, #DDDDDD); border:none;">Plastic</button>
+                                                    <div class="dropdown-content">
+                                                        <a class="wtbo" href="#"
+                                                            style="background: linear-gradient(65deg, #AAAAAA, #DDDDDD);"
+                                                            onclick="change_colour('#AAAAAA', '#DDDDDD')">price +0%</a>
+                                                        <a class="wtbo" href="#"
+                                                            style="background: linear-gradient(65deg, #000, #666);"
+                                                            onclick="change_colour('#000', '#666666')">price +0%</a>
+                                                        <a class="wtbo" href="#"
+                                                            style="background: linear-gradient(65deg, #af4b9b, #d397c7);"
+                                                            onclick="change_colour('#af4b9b', '#d397c7')">price +5%</a>
+                                                        <a class="wtbo" href="#"
+                                                            style="background: linear-gradient(65deg, #277396, #65b3d7);"
+                                                            onclick="change_colour('#277396', '#65b3d7')">price +5%</a>
+                                                        <a class="wtbo" href="#"
+                                                            style="background: linear-gradient(65deg, #f2cf87, #FFD);"
+                                                            onclick="change_colour('#f2cf87', '#FFFFDD')">price +10%</a>
+                                                    </div>
+                                                </div>
+                                                <button class="wtbo"
+                                                    style="z-index:20; text-align:center; width:45%; background: linear-gradient(65deg, blue, green, red); position:absolute; right:0px; border:none; cursor:pointer;"><!--Paint--></button>
+                                            </div>
+                                        </div>
+
+
+
+                                        <div style="width:100%; height:58%; position:absolute; bottom:0px; left:0px;">
+                                            <div class="line2" style="width:100%; height:2px; left:0px; bottom:100%">
+                                            </div>
+                                            <div id="hide_contact"
+                                                style="z-index:50; width:100%; height:100%; background-color: rgba(0,0,0,0.4); border-radius:3px; position:absolute; top:0px; left:0px;">
+                                                <output id="hide_text"
+                                                    style="text-align:center; font-size:20px; background-color:#EEEEEE; padding:5px; width:70%; border: 2px solid #000000; border-radius:3px; position:absolute; left:calc(15% - 4px); top:40px;">Can't
+                                                    order without an STL file</output>
+                                            </div>
+
+
+                                            <a class="h1"
+                                                style="top:2px; background-color:#e3f7e7; background: linear-gradient(65deg, #f2cf87, #FFD);">Order
+                                                now</a>
+
+                                            <!--<a style="font-size:11.5px; width:calc(100% - 1px - 3px - 3px); position:absolute; top:34px; right:1px;">* Only used for 3D print confirmation and updates.</a>
+                                            
+                                            <button id="confirm_order" onclick="confirm_order()" disabled="disabled" style="font-family:'Times'; font-weight:bold; font-size:16px; height:28px; position:absolute; bottom:2px; right:2px; background: linear-gradient(65deg, #f2cf87, #FFD); border-color:#BBF; border-radius:5px;">Confirm order</button>-->
+
+                                            <a
+                                                style="font-size:12px; width:calc(100% - 1px - 3px - 3px); position:absolute; top:34px; right:1px;">*
+                                                These details will only be used for confirming the 3D print order and
+                                                related progress updates.</a>
+
+                                            <div class="b1"
+                                                style="text-align:left; width:220px; border:2px solid #888; border-radius:6px; bottom:75px; left:5px;">
+                                                <a style="position:absolute; left:2px;">Email:</a>
+                                                <input id="zip"
+                                                    style="z-index:1; text-align:left; width:calc(100% - 55px); height:15px; position:absolute; right:0px;">
+                                            </div>
+
+                                            <div class="b1"
+                                                style="text-align:left; width:155px; border:2px solid #888; border-radius:6px; bottom:45px; left:5px;">
+                                                <a style="position:absolute; left:2px;">Phone:</a>
+                                                <input id="zip"
+                                                    style="z-index:1; text-align:left; width:calc(100% - 55px); height:15px; position:absolute; right:0px;">
+                                                <div
+                                                    style="line-height:14px; font-size:12px; color:crimson; width:80px; position:absolute; top:-2px; left:calc(100% + 5px);">
+                                                    * Phone number <a style="font-size:14px; font-weight:bold;">not</a>
+                                                    required.</div>
+                                            </div>
+
+                                            <div class="comment_box"><a
+                                                    style="text-align:center; width:100%; position:absolute; top:5px;">Comment?</a><textarea
+                                                    type="textbox"></textarea></div>
+
+                                            <button id="confirm_order" onclick="confirm_order()" disabled="disabled"
+                                                style="font-family:'Times'; font-weight:bold; font-size:22px; position:absolute; bottom:5px; right:5px; background: linear-gradient(65deg, #f2cf87, #FFD); border-color:#BBF; border-radius:5px; cursor:pointer;"><a
+                                                    style="margin:0px;">Confirm order</a></button>
+
+                                        </div>
+
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
     <script type="module" src="./script.js"></script>
+    <script>
+        var vstl = document.getElementById("vs_iframe"); //view_stl object
+        var shade = '#DDDDDD';
+        var price_convert = 0.06;
+        var price_unit = 1;
+        var user_country = "United States";
+
+        function load_local_file(f) { vstl.contentWindow.postMessage({ msg_type: 'load', file: f }, '*'); }
+
+        // STL file viewer - function handler
+        vstl.onload = function () {
+
+            vstl.contentWindow.postMessage({ msg_type: "get_info" }, "*");
+            window.onmessage = function (e) {
+                if (e.origin == "https://www.viewstl.com" && e.data.msg_type) {
+                    if (e.data.msg_type == "info") {
+                        vstl.contentWindow.postMessage({ msg_type: 'set_bgcolor', value: '#DEE3ED' }, '*');
+                        vstl.contentWindow.postMessage({ msg_type: 'set_color', value: shade }, '*');
+
+                        input_size = false; x_axis = e.data.x; y_axis = e.data.y; z_axis = e.data.z; area = e.data.area;
+                        shape_vol = e.data.volume / 1000;
+                        document.getElementById('size_inputs').style.visibility = 'hidden';
+                        document.getElementById('fileselect').style.visibility = 'hidden';
+                        document.getElementById('colour1').style.visibility = 'visible';
+                        //document.getElementById('hide_contact').style.visibility = 'hidden';
+                        update_axis();
+                    }
+                }
+            }
+        }
+        var ctx = canvas.getContext('2d'), img = new Image();
+        // Turn off image smoothing - this will give the pixelated effect
+        ctx.mozImageSmoothingEnabled = false;
+        ctx.webkitImageSmoothingEnabled = false;
+        ctx.imageSmoothingEnabled = false;
+
+        img.onload = pixelate; // Wait until image is actually available (any image works!)
+        img.src = 'http://math.ucr.edu/home/baez/mathematical/dodecahedron_spinning.gif';
+
+        function pixelate() {
+            var size = 0.5 + (0.5 * document.getElementById('quality').value / 100); //Natrual range is 0 to 1
+            var w = canvas.width * size, h = canvas.height * size; // Cache scaled width and height
+
+            ctx.drawImage(img, 0, 0, w, h); // Draw original image to the scaled size
+
+            ctx.drawImage(canvas, 0, 0, w, h, 0, 0, canvas.width, canvas.height); // Then draw that scaled image thumb back to fill canvas.  As smoothing is off, the result will be pixelated
+        }
+
+        //### START LEGIT CODE ###
+
+        //Declare common variables
+        var x_axis = 0, y_axis = 0, z_axis = 0, area = 0;
+        var box_vol = 0, shape_vol = 0;
+        var unit_1, unit_2, mult_1, mult_2, fixed;
+        var input_size = true;
+
+        //Populate the initial outputs:
+        update_unit();
+
+
+        function commas_convert(x) {
+            return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+        }
+
+        function refreshIframe(name) {
+            var ifr = document.getElementsByName(name)[0];
+            ifr.src = ifr.src;
+            input_size = true; x_axis = 0; y_axis = 0; z_axis = 0; shape_vol = 0; area = 0;
+            document.getElementById('size_inputs').style.visibility = 'visible';
+            document.getElementById('fileselect').style.visibility = 'visible';
+            document.getElementById('fileselect').value = "";
+            document.getElementById('hide_contact').style.visibility = 'visible';
+            document.getElementById('hide_text').value = "Can't order without an STL file";
+            document.getElementById('confirm_order').disabled = "disabled";
+            document.getElementById('shipping').value = "";
+            document.getElementById('colour1').style.visibility = 'hidden';
+            update_axis();
+        }
+
+
+        function update_unit() {
+            var unit;
+            var radios = document.getElementsByName('unit');
+            for (var i = 0, length = radios.length; i < length; i++) {
+                if (radios[i].checked) {
+                    unit = radios[i].value;
+                    break;
+                }
+            }
+
+            var mult_0;
+            if (unit == 0) {
+                unit_1 = "mm"; unit_2 = "cm"; fixed = 0;
+                mult_0 = 25.4; mult_1 = 1; mult_2 = 1;
+            } else { //unit == 1
+                unit_1 = "in"; unit_2 = "in"; fixed = 1;
+                mult_0 = 1 / 25.4; mult_1 = 1 / 25.4; mult_2 = Math.pow(1 / 25.4, 3) / Math.pow(1 / 10, 3);
+            }
+
+            document.getElementById('x_input').value = (document.getElementById('x_input').value * mult_0).toFixed(0 + fixed);
+            document.getElementById('x_input').step = Math.pow(0.1, fixed);
+            document.getElementById('x_unit').value = unit_1;
+            document.getElementById('y_input').value = (document.getElementById('y_input').value * mult_0).toFixed(0 + fixed);
+            document.getElementById('y_input').step = Math.pow(0.1, fixed);
+            document.getElementById('y_unit').value = unit_1;
+            document.getElementById('z_input').value = (document.getElementById('z_input').value * mult_0).toFixed(0 + fixed);
+            document.getElementById('z_input').step = Math.pow(0.1, fixed);
+            document.getElementById('z_unit').value = unit_1;
+
+            document.getElementById('unit_bvol').value = unit_2;
+            document.getElementById('unit_svol').value = unit_2;
+
+            update_axis();
+            update_strength();
+            update_quality();
+        }
+
+
+        function update_axis() {
+            var scale = document.getElementById('scale').value / 100;
+
+            if (input_size == true) {
+                x_axis = document.getElementById('x_input').value / mult_1;
+                y_axis = document.getElementById('y_input').value / mult_1;
+                z_axis = document.getElementById('z_input').value / mult_1;
+            }
+
+
+            var x = document.getElementById('x');
+            var y = document.getElementById('y');
+            var z = document.getElementById('z');
+
+            if (x_axis + y_axis + z_axis != 0) {
+                //1. Round off to 0.1mm if below 1000mm, else round off to 1mm
+                //2. Prevent absurd numbers
+
+                if (scale * x_axis * mult_1 < 1000) {
+                    x.value = Math.abs(scale * x_axis * mult_1).toFixed(1 + fixed) + " " + unit_1;
+                } else if (scale * x_axis < 10000) {
+                    x.value = Math.abs(scale * x_axis * mult_1).toFixed(0 + fixed) + " " + unit_1;
+                } else { x.value = "Huge"; }
+
+                if (scale * y_axis * mult_1 < 1000) {
+                    y.value = Math.abs(scale * y_axis * mult_1).toFixed(1 + fixed) + " " + unit_1;
+                } else if (scale * y_axis < 10000) {
+                    y.value = Math.abs(scale * y_axis * mult_1).toFixed(0 + fixed) + " " + unit_1;
+                } else { y.value = "Huge"; }
+
+                if (scale * z_axis * mult_1 < 1000) {
+                    z.value = Math.abs(scale * z_axis * mult_1).toFixed(1 + fixed) + " " + unit_1;
+                } else if (scale * z_axis < 10000) {
+                    z.value = Math.abs(scale * z_axis * mult_1).toFixed(0 + fixed) + " " + unit_1;
+                } else { z.value = "Huge"; }
+            }
+            else {
+                x.value = "";
+                y.value = "";
+                z.value = "";
+                document.getElementById('box_vol').value = "";
+            }
+
+            update_vol();
+        }
+
+
+        function update_vol() {
+            var scale = document.getElementById('scale').value / 100;
+            var bvol = document.getElementById('box_vol');
+            var svol = document.getElementById('shape_vol');
+
+            box_vol = x_axis * y_axis * z_axis * Math.pow(scale, 3) / 1000;
+            if (box_vol != 0) {
+                if (box_vol < 10000000) {
+                    bvol.value = commas_convert((box_vol * mult_2).toFixed(0 + fixed));
+                } else {
+                    bvol.value = "Too big!";
+                }
+            } else {
+                bvol.value = "";
+            }
+
+            if (shape_vol != 0) {
+                if (shape_vol * Math.pow(scale, 3) < 1000000) {
+                    svol.value = commas_convert((shape_vol * Math.pow(scale, 3) * mult_2).toFixed(0 + fixed));
+                } else {
+                    svol.innerHTML = "<a style='font-size:12px;'>Too big!</a>";
+                    //svol.innerHTML = "Too big!";
+                }
+            } else {
+                svol.value = "";
+            }
+
+            update_price();
+        }
+
+        function update_strength() {
+            var strength = document.getElementById('strength').value / 100;
+
+            document.getElementById('strength_rating').value = (100 * strength).toFixed(0) + " %";
+            var infill = Math.max(5, 0.95 * 100 * Math.pow(strength, 1.5));
+            document.getElementById('infill').value = infill.toFixed(1) + " %";
+            document.getElementById('walls').value = (0.04 * 100 * strength * mult_1).toFixed(2 + fixed) + " " + unit_1;
+
+            var review = document.getElementById('review_strength');
+            if (strength <= 0.15) {
+                review.value = "Fragile";
+            } else if (strength <= 0.35) {
+                review.value = "Workable";
+            } else if (strength <= 0.6) {
+                review.value = "Average";
+            } else if (strength <= 0.85) {
+                review.value = "Durable";
+            } else {
+                review.value = "Heavy-duty";
+            }
+
+            document.documentElement.style.setProperty(`--infill_border`, 280 / infill + "px");
+            document.documentElement.style.setProperty(`--infill_fill`, infill / 14 + "%");
+            document.documentElement.style.setProperty(`--walls_image`, (0.04 * 100 * strength * 3.779527559) + "px");
+
+            update_price();
+        }
+
+
+        function update_quality() {
+            var quality = document.getElementById('quality').value / 100;
+
+            document.getElementById('quality_rating').value = (100 * quality).toFixed(0) + " %";
+            document.getElementById('surface').value = (100 * quality).toFixed(0) + " %";
+            document.getElementById('accuracy').value = "± " + ((0.14 - 0.08 * quality) * mult_1).toFixed(2 + 2 * fixed) + " " + unit_1;
+
+            var review = document.getElementById('review_quality');
+            if (quality <= 0.15) {
+                review.value = "DIY";
+            } else if (quality <= 0.35) {
+                review.value = "Draft";
+            } else if (quality <= 0.6) {
+                review.value = "Average";
+            } else if (quality <= 0.85) {
+                review.value = "Clear-cut";
+            } else {
+                review.value = "Meticulous";
+            }
+
+            pixelate();
+            update_price();
+        }
+
+
+        function calc_price(box, shape, strength, quality) {
+            var strength_min = 1, strength_scale = 2, strength_max = Math.pow(3.5, 1 / strength_scale);
+            var quality_min = 1, quality_scale = 1.3, quality_max = 0.14 / 0.06;
+            var price_min = 5, vol_adjust = 0.6;
+            var price_per = 0.22 / Math.pow(strength_max, strength_scale) / Math.pow(quality_max, quality_scale); //Price per unit of a 100% : 100% item
+
+            var scale = document.getElementById('scale').value / 100;
+            var blocks = 10 * (-1 + Math.floor(1 + scale * x_axis / 200) * Math.floor(1 + scale * y_axis / 200) * Math.floor(1 + scale * z_axis / 200));
+
+            return Math.max(blocks + price_min, blocks + price_per * (box * (1 - vol_adjust) + shape * vol_adjust) * Math.pow(strength_min + strength * (strength_max - strength_min), strength_scale) * Math.pow(quality_min + quality * (quality_max - quality_min), quality_scale));
+            //return Math.max(5, 0.12 * (box/2 + shape)/2 * Math.pow(0.3 + 2*strength, 0.8) * Math.pow(0.3 + 2*quality, 0.3));
+        }
+
+        function update_price() {
+            var box = box_vol;
+            var strength = document.getElementById('strength').value / 100;
+            var quality = document.getElementById('quality').value / 100;
+            var scale = document.getElementById('scale').value / 100;
+            var shape = shape_vol * Math.pow(scale, 3);
+
+            var ours = document.getElementById('price_ours');
+            var competitor = document.getElementById('price_competitor');
+            var ship = document.getElementById('shipping');
+            var contact = document.getElementById('hide_contact');
+            var confirm = document.getElementById('confirm_order');
+
+            var mass = Math.max(5, 0.95 * 100 * Math.pow(strength, 1.5)) / 100 * shape_vol * Math.pow(scale, 3) + area * 0.004 * strength / 100 * Math.pow(scale, 2);
+            if (shape_vol != 0) { document.getElementById('mass').value = commas_convert(mass.toFixed(0)) + " grams"; }
+
+            if (box != 0) {
+                var prefix = "";
+                var price;
+
+                if (input_size == true) {
+                    prefix = "$" + commas_convert((calc_price(box, 0, strength, quality) * price_convert).toFixed(2)) + " ~ ";
+                    price = calc_price(box, box, strength, quality);
+                } else {
+                    price = calc_price(box, shape, strength, quality);
+                }
+
+                if (price < 5000) {
+                    ours.innerHTML = prefix + "$" + commas_convert((price * price_convert).toFixed(2)) + " <a style='font-size:10px; position:relative; top:-3px;'>" + price_unit + "</a>";
+                    competitor.innerHTML = "$" + commas_convert(Math.max(5, 0.23 * box * price_convert).toFixed(2)) + " <a style='font-size:10px; position:relative; top:-1px;'>" + price_unit + "</a>";
+                    ship.innerHTML = calc_ship(mass);
+                    confirm.disabled = "";
+                    contact.style.visibility = 'hidden';
+                } else {
+                    ours.value = "Transaction limit exceeded";
+                    competitor.value = "";
+                    //competitor.innerHTML = "$" + commas_convert(Math.max(5, 0.23 * box).toFixed(2)) + " <a style='font-size:10px; position:relative; top:-1px;'>"+currency+"</a>";
+                    ship.value = "";
+                    confirm.disabled = "disabled";
+                    document.getElementById('hide_text').value = "Transaction limit exceeded";
+                    contact.style.visibility = 'visible';
+                }
+
+            } else {
+                ship.value = "";
+                ours.value = "";
+                competitor.value = "";
+            }
+        }
+
+
+
+        document.getElementById('colour1').innerHTML = (document.getElementById('colour2').innerHTML).replace("material_colour2", "material_colour1");
+
+        function change_colour(dark, light) {
+            document.getElementById('material_colour1').style.background = "linear-gradient(65deg, " + dark + ", " + light + ")"
+            document.getElementById('material_colour2').style.background = "linear-gradient(65deg, " + dark + ", " + light + ")"
+
+            shade = light;
+
+            if (input_size == false) {
+                vstl.contentWindow.postMessage({ msg_type: "get_info" }, "*");
+                window.onmessage = function (e) {
+                    if (e.origin == "https://www.viewstl.com" && e.data.msg_type) {
+                        if (e.data.msg_type == "info") {
+                            vstl.contentWindow.postMessage({ msg_type: 'set_color', value: shade }, '*');
+                        }
+                    }
+                }
+            }
+        }
+
+        /*
+        Dummy data for the most common location shipping prices:
+        Economy shipping up to 2kg, then Standard
+        https://auspost.com.au/content/dam/auspost_corp/media/documents/post-guides/international-post-guide.pdf
+        https://auspost.com.au/business/shipping/check-postage-costs/downloadable-price-guides
+        https://auspost.com.au/business/shipping/check-postage-costs/downloadable-price-guides/pricing-updates
+        https://auspost.com.au/parcels-mail/calculate-postage-delivery-times/#/
+        */
+        function calc_ship(mass) {
+            var uk = [20.46, 35.19, 47.54, 60.05, 75.71, 93.04, 148.01, 174.45, 200.90];
+            var list = [];
+            switch (user_country) {
+                case "Australia": return "<a target='_blank' href='https://auspost.com.au/parcels-mail/calculate-postage-delivery-times/#/option/domestic/2762/" + user_zip + "' style='color:#68B;'>Variable shipping</a>";
+                case "New Zealand": list = [10.67, 23.06, 29.08, 34.04, 48.47, 63.34, 82.65, 97.77, 112.88]; break;
+                case "China": list = [13.77, 28.44, 43.33, 55.29, 67.92, 79.18, 121.42, 145.53, 169.64]; break;
+                case "United States": list = [15.85, 33.38, 45.40, 57.63, 71.20, 84.35, 132.02, 157.35, 182.68]; break;
+                case "United Kingdom": list = uk; break;
+                case "Ireland": list = uk; break;
+                case "Europe": list = [21.48, 36.95, 49.91, 63.05, 84.17, 113.94, 151.84, 178.94, 206.04]; break;
+                default: /*Rest of world*/ list = [26.01, 50.40, 71.63, 94.59, 112.48, 135.21, 219.45, 295.99, 359.45]; break;
+            }
+
+            var asia = ["Asia", "Bangladesh", "Bhutan", "India", "Indonesia", "Japan", "Malaysia", "Singapore", "Korea, Democratic People's Republic", "Korea, Republic of", "Taiwan", "Thailand", "Vietnam"]
+            for (var i = 0; i < asia.length; i++) {
+                if (user_country == asia[i]) {
+                    list = [14.39, 29.79, 45.35, 57.45, 69.54, 81.73, 128.68, 153.39, 178.10];
+                    break;
+                }
+            }
+
+            var pacific_islands = ["Pacific Islands", "Bangladesh", "Brunei Darussalam", "Cambodia", "Lao People's Democratic Republic", "Maldives", "Myanmar", "Nepal", "Pakistan", "Philippines", "Sri Lanka", "Timor-Leste", "East Timor"]
+            for (var i = 0; i < pacific_islands.length; i++) {
+                if (user_country == asia[i]) {
+                    list = [15.06, 31.02, 47.46, 59.83, 72.90, 87.03, 135.44, 161.41, 187.37];
+                    break;
+                }
+            }
+
+            var weight = [0.5, 1, 1.5, 2, 3, 5, 10, 15, 20]; //Up to this value in kg
+            var price_output;
+            for (i = 0; i < weight.length; i++) {
+                price_output = list[i];
+                if (1000 * weight[i] >= mass) {
+                    break;
+                }
+            }
+            return "+ $" + (price_output * 1.1) + " shipping";
+        }
+
+        //Access a site using the proxy   -   https://CORS-Anywhere.HerokuApp.com/
+        //This retrieves the entire HTML page source!
+        // function ajaxmaster(site, split1, split2, sync = false) {
+        //     var output;
+        //     $.ajax({ url: "https://CORS-Anywhere.HerokuApp.com/" + site, async: sync })
+        //         .done(function (data) {
+        //             output = data.split(split1)[1].split(split2)[0];
+        //         });
+        //     return output;
+        // }
+
+        // var user_country = "";
+        // for (let attempts = 0; attempts < 5; attempts++) {
+        //     //   https://whatismycountry.com/   -   https://whatismycountry.com/countries/
+        //     // user_country = ajaxmaster("https://whatismycountry.com/", "Your Country is ", "<");
+        //     if (user_country != "") { break; }
+        // }
+
+        // document.getElementById('shipping').title = user_country + " shipping rates"
+        // var user_zip, price_unit = "AUD", price_convert = 1;
+        // if (user_country == "Australia") {
+        //     user_city = ajaxmaster("https://whatismycountry.com/", '<span id="mycity" class="icon-bg">', "<").replace(" ", "-");
+        //     user_zip = ajaxmaster("http://auspost.com.au/postcode/" + user_city, '<span class="suburb-map-postcode">', "<");
+        // } else {
+        //     price_unit = "USD"; // ajax calls to establish AUD : USD price conversion
+        //     $.ajax({ url: "https://api.fixer.io/latest?base=AUD", async: false })
+        //         .done(function (data) {
+        //             price_convert = data.rates.USD;
+        //             //List of currencies: 	JSON.stringify(data);
+        //             //Conversion rate: 		"1 AUD = " + data.rates.USD + " USD";
+        //         });
+        // }
+    </script>
 </body>
 
 </html>
