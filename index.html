@@ -44,298 +44,246 @@
             <a href="#contact">Contact Me</a>
         </div>
         <div id="quote">
-            <div class="statContainer"
-                style="width:1000px; height:283px; border:3px solid rgba(0,0,0,1); border-radius:10px; background-color:#FFFFFF; position:absolute; top:0px; left:0px;">
-
-                <div class="stat_box"
-                    style="z-index:2; line-height:30px; height:30px; width:145px; top:0px; left:0px; border:0px;">
-                    <a class="stat_name"
-                        style="height:100%; width:50px; border-radius:10px 0px 0px 0px; border:0px;">Sizes</a>
-                    <div class="stat_value"
-                        style="text-align:left; height:100%; width:calc(100% - 50px); left:50px; top:0px;"><input
-                            id="unit" name="unit" type="radio" value="0" onclick="update_unit()"
-                            checked="checked">mm<input id="unit" name="unit" type="radio" value="1"
-                            onclick="update_unit()">inch</div>
-                </div>
-
-                <div
-                    style="z-index:1; width:350px; height:250px; border:3px solid rgba(0,0,0,1); border-radius:5px; background-color:#FFFFFF; position:absolute; top:30px; left:-3px;">
-
-                    <a
-                        style="font-size:14px; z-index:1; height:20px; position:absolute; bottom:calc(100% + 11px); right:2px;">3</a>
-                    <div class="bvol" style="width:40px;"><output id="unit_bvol"></output>
-                        <output id="box_vol"
-                            style="text-align:right; padding-right:2px; width:85px; line-height:30px; height:30px; background-color:#e3f7e7; position:absolute; top:0px; right:100%;"></output>
-                    </div>
-                    <div class="bvol" style="width:80px; right:115px;">Box vol.:<div class="line1"
-                            style="width:2px; top:0px; right:100%;"></div>
-                    </div>
-
-                    <!-- ### <START> Direct size inputs ### -->
-
-                    <div id="size_inputs"
-                        style="z-index:2; text-align:center; font-family:'Arial'; width:80%; height:70px; position:absolute; left:10%; top:50%;">
-                        or directly input your model sizes
-
-                        <div class="stat_box" style="bottom:0px; left:0px;"><a class="stat_name">width (x)</a>
-                            <input id="x_input" oninput="update_axis()" class="stat_value" value="0" min="0"
-                                type="number" step="1" style="text-align:right; height:15px; width:60%;">
-                            <output id="x_unit" class="stat_value" style="width:34%; left:66%;"></output>
-                        </div>
-                        <div class="stat_box" style="bottom:0px; left:98px;"><a class="stat_name">depth (y)</a>
-                            <input id="y_input" oninput="update_axis()" class="stat_value" value="0" min="0"
-                                type="number" step="1" style="text-align:right; height:15px; width:60%;">
-                            <output id="y_unit" class="stat_value" style="width:34%; left:66%;"></output>
-                        </div>
-                        <div class="stat_box" style="bottom:0px; right:0px;"><a class="stat_name">height (z)</a>
-                            <input id="z_input" oninput="update_axis()" class="stat_value" value="0" min="0"
-                                type="number" step="1" style="text-align:right; height:15px; width:60%;">
-                            <output id="z_unit" class="stat_value" style="width:34%; left:66%;"></output>
+            <div class="statContainer">
+                <div class="insertmodel">
+                    <div class="dragdrop">
+                        <!-- ### <START> STL file manager ### -->
+                        <div class="dropSTL"
+                            style="overflow:hidden; border:0; margin:0; width:calc(100%); height:calc(100% - 125px); position:absolute;">
+                            <div id="colour1"
+                                style="visibility:hidden; z-index:2; position:absolute; top:0px; left:0px;">
+                            </div>
+                            <input type="file" value="internal file" id="fileselect"
+                                onchange="load_local_file(this.files[0]);" style="opacity:0;">
+                            <iframe name="viewstl" id="vs_iframe"
+                                src="https://www.viewstl.com/?embedded&bgcolor=gray&color=white&noborder=yes&orientation=bottom"
+                                style="height:100%; width:calc(100% + 12px); position:absolute; top:-2px; left:-8px;"></iframe>
                         </div>
 
-                    </div>
+                        <button id="reset" onclick="refreshIframe('viewstl')" style="width:90px;height:42px;">Reset
+                            STL</button>
 
-                    <!-- ### <END> Direct size inputs ### -->
+                        <div class="scalediv" style="width:calc(100% - 90px); height:42px; background-color:#FFFFFF;">
 
-                    <!-- ### <START> STL file manager ### -->
+                            <a class="b1" style="width:45px; left:0px; top:0px;">Scale:</a>
+                            <input id="scale" oninput="update_axis()" value="100" min="0" type="number" step="5"
+                                style="z-index:1; text-align:right; background-color:#e3f7e7; width:25px; height:14px; position:absolute; left:45px; top:0px;">
+                            <a class="b1" style="width:20px; left:100px; top:0px;">%
+                                <div class="line1" style="width:2px; top:0px; left:100%;"></div>
+                            </a>
 
-                    <div
-                        style="overflow:hidden; border:0; margin:0; width:calc(100%); height:calc(100% - 27px); position:absolute;">
-                        <div id="colour1" style="visibility:hidden; z-index:2; position:absolute; top:0px; left:0px;">
-                        </div>
-                        <input type="file" value="internal file" id="fileselect"
-                            onchange="load_local_file(this.files[0]);" style="opacity:0;">
-                        <iframe name="viewstl" id="vs_iframe"
-                            src="https://www.viewstl.com/?embedded&bgcolor=gray&color=white&noborder=yes&orientation=bottom"
-                            style="height:100%; width:calc(100% + 12px); position:absolute; top:-2px; left:-8px;"></iframe>
-                    </div>
+                            <div class="b1" style="width:32px; right:0px;"><output id="unit_svol"></output>
+                                <output id="shape_vol"
+                                    style="overflow:hidden; text-align:right; padding-right:2px; background-color:#e3f7e7; width:44px; height:100%; position:absolute; top:0px; right:100%;"></output>
+                                <div class="b1" style="font-size:12px; width:40px; top:0px; right:calc(100% + 46px);">
+                                    Vol.:</div>
+                            </div>
 
-                    <button onclick="refreshIframe('viewstl')"
-                        style="width:90px;height:42px; position:absolute;bottom:0px">Reset STL</button>
+                            <a class="b1" style="left:0px; top:21px;">x:
+                                <output id="x" class="axis"></output></a>
 
-                    <div class="line1" style="height:2px; top:206px; left:0px;"></div>
+                            <a class="b1" style="left:33.3%; top:21px">y:
+                                <output id="y" class="axis"></output></a>
 
-                    <div
-                        style="width:calc(100% - 90px); height:42px; background-color:#FFFFFF; position:absolute; bottom:0px; left:90px;">
+                            <a class="b1" style="left:66.7%; top:21px">z:
+                                <output id="z" class="axis"></output></a>
 
-                        <div class="line1" style="width:1px; top:0px; left:0px;"></div>
-                        <div class="line1" style="height:2px; top:20px; left:0px;"></div>
-
-                        <a class="b1" style="width:45px; left:0px; top:0px;">Scale:</a>
-                        <input id="scale" oninput="update_axis()" value="100" min="0" type="number" step="5"
-                            style="z-index:1; text-align:right; background-color:#e3f7e7; width:52px; height:14px; position:absolute; left:45px; top:0px;">
-                        <a class="b1" style="width:20px; left:100px; top:0px;">%
-                            <div class="line1" style="width:2px; top:0px; left:100%;"></div>
-                        </a>
-
-                        <div class="b1" style="width:32px; right:0px;"><output id="unit_svol"></output>
-                            <a
-                                style="font-size:12px; z-index:1; height:20px; position:absolute; bottom:calc(100% + 11px); top:0px; right:1px;">3</a>
-                            <output id="shape_vol"
-                                style="overflow:hidden; text-align:right; padding-right:2px; background-color:#e3f7e7; width:44px; height:100%; position:absolute; top:0px; right:100%;"></output>
-                            <div class="b1" style="font-size:12px; width:60px; top:0px; right:calc(100% + 46px);">Shape
-                                vol.:</div>
                         </div>
 
-                        <a class="b1" style="left:0px; top:21px;">x:
-                            <output id="x" class="axis"></output></a>
+                        <!-- ### <START> Direct size inputs ### -->
 
-                        <a class="b1" style="left:33.3%; top:21px">y:
-                            <output id="y" class="axis"></output></a>
+                        <div id="size_inputs">
+                            <div class="stat_box">
+                                <a class="stat_name">width (x)</a>
+                                <input id="x_input" oninput="update_axis()" class="stat_value" value="0" min="0"
+                                    type="number" step="1" style="text-align:right; height:15px; width:60%;">
+                                <output id="x_unit" class="stat_value" style="width:34%;"></output>
+                            </div>
+                            <div class="stat_box">
+                                <a class="stat_name">depth (y)</a>
+                                <input id="y_input" oninput="update_axis()" class="stat_value" value="0" min="0"
+                                    type="number" step="1" style="text-align:right; height:15px; width:60%;">
+                                <output id="y_unit" class="stat_value" style="width:34%;"></output>
+                            </div>
+                            <div class="stat_box">
+                                <a class="stat_name">height (z)</a>
+                                <input id="z_input" oninput="update_axis()" class="stat_value" value="0" min="0"
+                                    type="number" step="1" style="text-align:right; height:15px; width:60%;">
+                                <output id="z_unit" class="stat_value" style="width:34%;"></output>
+                            </div>
+                        </div>
 
-                        <a class="b1" style="left:66.7%; top:21px">z:
-                            <output id="z" class="axis"></output></a>
+                        <!-- ### <END> Direct size inputs ### -->
 
+                        <div class="stat_box">
+                            <div class="stat_value">
+                                <input id="unit" name="unit" type="radio" value="0" onclick="update_unit()"
+                                    checked="checked">MM
+                                <input id="unit" name="unit" type="radio" value="1" onclick="update_unit()">IN
+                            </div>
+                            <div class="bvol">
+                                Box vol:
+                                <output id="unit_bvol"></output>
+                                <output id="box_vol" style="background-color:#e3f7e7;">0</output>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
                 <!-- ### <END> STL file manager ### -->
+                <!--
+                <div class="strengthrating" style="width:200px; height:100%;">
 
-                <div class="line2" style="left:350px; background-color:#000000;">
-                    <div style="width:200px; height:100%; position:absolute; top:0px; left:0px;">
+                    <a class="h1">Strength rating<span class="tooltip">• Strength of the product delivered,
+                            featuring relative durability and impact resistance. <br>• A higher rating dictates
+                            greater wall thickness and infill % ('solidness'). <br>• Highly recommended for
+                            permanent-solution models or those to be frequently handled.<br>• 50% rating is close to
+                            what most companies provide.</span></a>
+                    <a class="rating_text" style="top:35px;">Solid</a>
+                    <a class="rating_text" style="bottom:10px;">Shell</a>
+                    <a class="rating_text" style="text-align:left; top:52px; left:40px;">100%</a>
+                    <a class="rating_text" style="text-align:left; bottom:25px; left:40px;">10%</a>
 
-                        <a class="h1">Strength rating<span class="tooltip">• Strength of the product delivered,
-                                featuring relative durability and impact resistance. <br>• A higher rating dictates
-                                greater wall thickness and infill % ('solidness'). <br>• Highly recommended for
-                                permanent-solution models or those to be frequently handled.<br>• 50% rating is close to
-                                what most companies provide.</span></a>
-                        <a class="rating_text" style="top:35px;">Solid</a>
-                        <a class="rating_text" style="bottom:10px;">Shell</a>
-                        <a class="rating_text" style="text-align:left; top:52px; left:40px;">100%</a>
-                        <a class="rating_text" style="text-align:left; bottom:25px; left:40px;">10%</a>
+                    <input id="strength" oninput="update_strength()" type="range" orient="vertical" value="50" min="10"
+                        max="100" step="1" />
+                    <output id="strength_rating" class="rating_value"></output>
+                    <div id="strength_image" class="rating_image">
+                        <div class="crosshatch"></div>
+                    </div>
 
-                        <input id="strength" oninput="update_strength()" type="range" orient="vertical" value="50"
-                            min="10" max="100" step="1" />
-                        <output id="strength_rating" class="rating_value"></output>
-                        <div id="strength_image" class="rating_image">
-                            <div class="crosshatch"></div>
-                        </div>
-
-                        <div class="stat_box" style="bottom:38%;"><a class="stat_name">Infill</a>
-                            <output id="infill" class="stat_value"></output>
-                        </div>
-                        <div class="stat_box" style="bottom:20%;"><a class="stat_name">Walls</a>
-                            <output id="walls" class="stat_value"></output>
-                        </div>
-                        <div class="stat_box" style="bottom:2%;"><a class="stat_name"
-                                style="background-color:#d3d5e6;">Quality</a>
-                            <output id="review_strength" class="stat_value" style="background-color:#eff0fa;"></output>
-                        </div>
-
-
-                        <div class="line2">
-                            <div style="width:200px; height:100%; position:absolute; top:0px; left:0px;">
-
-                                <a class="h1">Cosmetic rating<span class="tooltip">• Cosmetic review of the product
-                                        delivered, featuring surface quality and dimensional accuracy. <br>• A higher
-                                        rating dictates manual surface tooling and finer 3D printing. <br>• Highly
-                                        recommended for cosmetic models or shapes / components with grooves. <br>• 50%
-                                        rating is close to what most companies provide.</span></a>
-                                <a class="rating_text" style="top:35px;">Fine</a>
-                                <a class="rating_text" style="bottom:10px;">Rough</a>
-                                <a class="rating_text" style="text-align:left; top:52px; left:40px;">100%</a>
-                                <a class="rating_text" style="text-align:left; bottom:25px; left:40px;">5%</a>
-
-                                <input id="quality" oninput="update_quality()" type="range" orient="vertical" value="50"
-                                    min="5" max="100" step="1" />
-                                <output id="quality_rating" class="rating_value"></output>
-                                <div id="quality_image" class="rating_image"><canvas id="canvas" class="canvas"
-                                        width="80" height="80"></canvas></div>
-
-                                <div class="stat_box" style="bottom:38%;"><a class="stat_name">Tooling</a>
-                                    <output id="surface" class="stat_value"></output>
-                                </div>
-                                <div class="stat_box" style="bottom:20%;"><a class="stat_name">Accuracy</a>
-                                    <output id="accuracy" class="stat_value"></output>
-                                </div>
-                                <div class="stat_box" style="bottom:2%;"><a class="stat_name"
-                                        style="background-color:#d3d5e6;">Quality</a>
-                                    <output id="review_quality" class="stat_value"
-                                        style="background-color:#eff0fa;"></output>
-                                </div>
-
-
-                                <div class="line2">
-                                    <div style="width:250px; height:100%; position:absolute; top:0px; left:0px;">
-
-                                        <!--<a class="h1">Pricing</a>-->
-
-                                        <div class="stat_box"
-                                            style="font-size:21px; line-height:25px; height:50px; width:calc(100% - 6px); border-radius:0px; top:0px; right:0px;">
-                                            <a class="stat_name" style="background-color:#e3f7e7;">Our Price</a>
-                                            <output id="price_ours" class="stat_value"></output>
-                                        </div>
-
-                                        <output id="mass"
-                                            style="z-index:5; font-size:14px; font-style:italic; position:absolute; top:3px; right:3px;"></output>
-
-                                        <div class="stat_box"
-                                            style="overflow:hidden; white-space:nowrap; width:105px; top:64px; left:8px;">
-                                            <a class="stat_name">Competitor</a>
-                                            <output id="price_competitor" class="stat_value"></output>
-                                        </div>
-
-                                        <output id="shipping"
-                                            style="text-align:right; font-style:italic; position:absolute; top:58px; right:5px;"></output>
-
-                                        <div id="colour2" style="position:absolute; top:82px; left:130px;">
-                                            <div class="stat_box"
-                                                style="width:110px; height:30px; position:absolute; top:0px; left:0px;">
-                                                <div class="line1"
-                                                    style="z-index:100; width:2px; left:calc(55% - 1px);"></div>
-                                                <!--<a style="position:relative; left:3px;">Colours:</a>-->
-                                                <div class="dropdown"
-                                                    style="z-index:10; text-align:center; height:100%; width:55%;">
-                                                    <button id="material_colour2" class="wtbo" disabled="disabled"
-                                                        style="background: linear-gradient(65deg, #AAAAAA, #DDDDDD); border:none;">Plastic</button>
-                                                    <div class="dropdown-content">
-                                                        <a class="wtbo" href="#"
-                                                            style="background: linear-gradient(65deg, #AAAAAA, #DDDDDD);"
-                                                            onclick="change_colour('#AAAAAA', '#DDDDDD')">price +0%</a>
-                                                        <a class="wtbo" href="#"
-                                                            style="background: linear-gradient(65deg, #000, #666);"
-                                                            onclick="change_colour('#000', '#666666')">price +0%</a>
-                                                        <a class="wtbo" href="#"
-                                                            style="background: linear-gradient(65deg, #af4b9b, #d397c7);"
-                                                            onclick="change_colour('#af4b9b', '#d397c7')">price +5%</a>
-                                                        <a class="wtbo" href="#"
-                                                            style="background: linear-gradient(65deg, #277396, #65b3d7);"
-                                                            onclick="change_colour('#277396', '#65b3d7')">price +5%</a>
-                                                        <a class="wtbo" href="#"
-                                                            style="background: linear-gradient(65deg, #f2cf87, #FFD);"
-                                                            onclick="change_colour('#f2cf87', '#FFFFDD')">price +10%</a>
-                                                    </div>
-                                                </div>
-                                                <button class="wtbo"
-                                                    style="z-index:20; text-align:center; width:45%; background: linear-gradient(65deg, blue, green, red); position:absolute; right:0px; border:none; cursor:pointer;"><!--Paint--></button>
-                                            </div>
-                                        </div>
-
-
-
-                                        <div style="width:100%; height:58%; position:absolute; bottom:0px; left:0px;">
-                                            <div class="line2" style="width:100%; height:2px; left:0px; bottom:100%">
-                                            </div>
-                                            <div id="hide_contact"
-                                                style="z-index:50; width:100%; height:100%; background-color: rgba(0,0,0,0.4); border-radius:3px; position:absolute; top:0px; left:0px;">
-                                                <output id="hide_text"
-                                                    style="text-align:center; font-size:20px; background-color:#EEEEEE; padding:5px; width:70%; border: 2px solid #000000; border-radius:3px; position:absolute; left:calc(15% - 4px); top:40px;">Can't
-                                                    order without an STL file</output>
-                                            </div>
-
-
-                                            <a class="h1"
-                                                style="top:2px; background-color:#e3f7e7; background: linear-gradient(65deg, #f2cf87, #FFD);">Order
-                                                now</a>
-
-                                            <!--<a style="font-size:11.5px; width:calc(100% - 1px - 3px - 3px); position:absolute; top:34px; right:1px;">* Only used for 3D print confirmation and updates.</a>
-                                            
-                                            <button id="confirm_order" onclick="confirm_order()" disabled="disabled" style="font-family:'Times'; font-weight:bold; font-size:16px; height:28px; position:absolute; bottom:2px; right:2px; background: linear-gradient(65deg, #f2cf87, #FFD); border-color:#BBF; border-radius:5px;">Confirm order</button>-->
-
-                                            <a
-                                                style="font-size:12px; width:calc(100% - 1px - 3px - 3px); position:absolute; top:34px; right:1px;">*
-                                                These details will only be used for confirming the 3D print order and
-                                                related progress updates.</a>
-
-                                            <div class="b1"
-                                                style="text-align:left; width:220px; border:2px solid #888; border-radius:6px; bottom:75px; left:5px;">
-                                                <a style="position:absolute; left:2px;">Email:</a>
-                                                <input id="zip"
-                                                    style="z-index:1; text-align:left; width:calc(100% - 55px); height:15px; position:absolute; right:0px;">
-                                            </div>
-
-                                            <div class="b1"
-                                                style="text-align:left; width:155px; border:2px solid #888; border-radius:6px; bottom:45px; left:5px;">
-                                                <a style="position:absolute; left:2px;">Phone:</a>
-                                                <input id="zip"
-                                                    style="z-index:1; text-align:left; width:calc(100% - 55px); height:15px; position:absolute; right:0px;">
-                                                <div
-                                                    style="line-height:14px; font-size:12px; color:crimson; width:80px; position:absolute; top:-2px; left:calc(100% + 5px);">
-                                                    * Phone number <a style="font-size:14px; font-weight:bold;">not</a>
-                                                    required.</div>
-                                            </div>
-
-                                            <div class="comment_box"><a
-                                                    style="text-align:center; width:100%; position:absolute; top:5px;">Comment?</a><textarea
-                                                    type="textbox"></textarea></div>
-
-                                            <button id="confirm_order" onclick="confirm_order()" disabled="disabled"
-                                                style="font-family:'Times'; font-weight:bold; font-size:22px; position:absolute; bottom:5px; right:5px; background: linear-gradient(65deg, #f2cf87, #FFD); border-color:#BBF; border-radius:5px; cursor:pointer;"><a
-                                                    style="margin:0px;">Confirm order</a></button>
-
-                                        </div>
-
-                                    </div>
-                                </div>
-
-                            </div>
-                        </div>
-
+                    <div class="stat_box" style="bottom:38%;"><a class="stat_name">Infill</a>
+                        <output id="infill" class="stat_value"></output>
+                    </div>
+                    <div class="stat_box" style="bottom:20%;"><a class="stat_name">Walls</a>
+                        <output id="walls" class="stat_value"></output>
+                    </div>
+                    <div class="stat_box" style="bottom:2%;"><a class="stat_name"
+                            style="background-color:#d3d5e6;">Quality</a>
+                        <output id="review_strength" class="stat_value" style="background-color:#eff0fa;"></output>
                     </div>
                 </div>
+                <div class="cosmeticrating" style="width:200px; height:100%;">
 
+                    <a class="h1">Cosmetic rating<span class="tooltip">• Cosmetic review of the product
+                            delivered, featuring surface quality and dimensional accuracy. <br>• A higher
+                            rating dictates manual surface tooling and finer 3D printing. <br>• Highly
+                            recommended for cosmetic models or shapes / components with grooves. <br>• 50%
+                            rating is close to what most companies provide.</span></a>
+                    <a class="rating_text" style="top:35px;">Fine</a>
+                    <a class="rating_text" style="bottom:10px;">Rough</a>
+                    <a class="rating_text" style="text-align:left; top:52px; left:40px;">100%</a>
+                    <a class="rating_text" style="text-align:left; bottom:25px; left:40px;">5%</a>
+
+                    <input id="quality" oninput="update_quality()" type="range" orient="vertical" value="50" min="5"
+                        max="100" step="1" />
+                    <output id="quality_rating" class="rating_value"></output>
+                    <div id="quality_image" class="rating_image"><canvas id="canvas" class="canvas" width="80"
+                            height="80"></canvas></div>
+
+                    <div class="stat_box" style="bottom:38%;"><a class="stat_name">Tooling</a>
+                        <output id="surface" class="stat_value"></output>
+                    </div>
+                    <div class="stat_box" style="bottom:20%;"><a class="stat_name">Accuracy</a>
+                        <output id="accuracy" class="stat_value"></output>
+                    </div>
+                    <div class="stat_box" style="bottom:2%;"><a class="stat_name"
+                            style="background-color:#d3d5e6;">Quality</a>
+                        <output id="review_quality" class="stat_value" style="background-color:#eff0fa;"></output>
+                    </div>
+                </div>
+                <div class="pricebox" style="width:250px; height:100%;">
+                    <div class="stat_box"
+                        style="font-size:21px; line-height:25px; height:50px; width:calc(100% - 6px); border-radius:0px; top:0px; right:0px;">
+                        <a class="stat_name" style="background-color:#e3f7e7;">Our Price</a>
+                        <output id="price_ours" class="stat_value"></output>
+                    </div>
+
+                    <output id="mass"
+                        style="z-index:5; font-size:14px; font-style:italic; position:absolute; top:3px; right:3px;"></output>
+
+                    <div class="stat_box" style="overflow:hidden; white-space:nowrap; width:105px; top:64px; left:8px;">
+                        <a class="stat_name">Competitor</a>
+                        <output id="price_competitor" class="stat_value"></output>
+                    </div>
+
+                    <output id="shipping"
+                        style="text-align:right; font-style:italic; position:absolute; top:58px; right:5px;"></output>
+
+                    <div id="colour2">
+                        <div class=" stat_box" style="width:110px; height:30px; position:absolute; top:0px; left:0px;">
+                            <div class="line1" style="z-index:100; width:2px; left:calc(55% - 1px);">
+                            </div>
+                            <div class="dropdown" style="z-index:10; text-align:center; height:100%; width:55%;">
+                                <button id="material_colour2" class="wtbo" disabled="disabled"
+                                    style="background: linear-gradient(65deg, #AAAAAA, #DDDDDD); border:none;">Plastic</button>
+                                <div class="dropdown-content">
+                                    <a class="wtbo" href="#"
+                                        style="background: linear-gradient(65deg, #AAAAAA, #DDDDDD);"
+                                        onclick="change_colour('#AAAAAA', '#DDDDDD')">price +0%</a>
+                                    <a class="wtbo" href="#" style="background: linear-gradient(65deg, #000, #666);"
+                                        onclick="change_colour('#000', '#666666')">price +0%</a>
+                                    <a class="wtbo" href="#"
+                                        style="background: linear-gradient(65deg, #af4b9b, #d397c7);"
+                                        onclick="change_colour('#af4b9b', '#d397c7')">price +5%</a>
+                                    <a class="wtbo" href="#"
+                                        style="background: linear-gradient(65deg, #277396, #65b3d7);"
+                                        onclick="change_colour('#277396', '#65b3d7')">price +5%</a>
+                                    <a class="wtbo" href="#" style="background: linear-gradient(65deg, #f2cf87, #FFD);"
+                                        onclick="change_colour('#f2cf87', '#FFFFDD')">price +10%</a>
+                                </div>
+                            </div>
+                            <button class="wtbo"
+                                style="z-index:20; text-align:center; width:45%; background: linear-gradient(65deg, blue, green, red); position:absolute; right:0px; border:none; cursor:pointer;"></button>
+                        </div>
+                    </div>
+                </div>
+                <div class="checkout">
+                    <div id="hide_contact"
+                        style="z-index:50; width:100%; height:100%; background-color: rgba(0,0,0,0.4); border-radius:3px; position:absolute; top:0px; left:0px;">
+                        <output id="hide_text"
+                            style="text-align:center; font-size:20px; background-color:#EEEEEE; padding:5px; width:70%; border: 2px solid #000000; border-radius:3px; position:absolute; left:calc(15% - 4px); top:40px;">Can't
+                            order without an STL file</output>
+                    </div>
+
+
+                    <a class="h1"
+                        style="top:2px; background-color:#e3f7e7; background: linear-gradient(65deg, #f2cf87, #FFD);">Order
+                        now</a>
+
+                    <a
+                        style="font-size:12px; width:calc(100% - 1px - 3px - 3px); position:absolute; top:34px; right:1px;">*
+                        These details will only be used for confirming the 3D print order and
+                        related progress updates.</a>
+
+                    <div class="b1"
+                        style="text-align:left; width:220px; border:2px solid #888; border-radius:6px; bottom:75px; left:5px;">
+                        <a style="position:absolute; left:2px;">Email:</a>
+                        <input id="zip"
+                            style="z-index:1; text-align:left; width:calc(100% - 55px); height:15px; position:absolute; right:0px;">
+                    </div>
+
+                    <div class="b1"
+                        style="text-align:left; width:155px; border:2px solid #888; border-radius:6px; bottom:45px; left:5px;">
+                        <a style="position:absolute; left:2px;">Phone:</a>
+                        <input id="zip"
+                            style="z-index:1; text-align:left; width:calc(100% - 55px); height:15px; position:absolute; right:0px;">
+                        <div
+                            style="line-height:14px; font-size:12px; color:crimson; width:80px; position:absolute; top:-2px; left:calc(100% + 5px);">
+                            * Phone number <a style="font-size:14px; font-weight:bold;">not</a>
+                            required.</div>
+                    </div>
+
+                    <div class="comment_box"><a
+                            style="text-align:center; width:100%; position:absolute; top:5px;">Comment?</a><textarea
+                            type="textbox"></textarea></div>
+
+                    <button id="confirm_order" onclick="confirm_order()" disabled="disabled"
+                        style="font-family:'Times'; font-weight:bold; font-size:22px; position:absolute; bottom:5px; right:5px; background: linear-gradient(65deg, #f2cf87, #FFD); border-color:#BBF; border-radius:5px; cursor:pointer;"><a
+                            style="margin:0px;">Confirm order</a></button>
+                </div> -->
             </div>
         </div>
+    </div>
     </div>
     <script type="module" src="./script.js"></script>
     <script>
@@ -464,7 +412,6 @@
                 y_axis = document.getElementById('y_input').value / mult_1;
                 z_axis = document.getElementById('z_input').value / mult_1;
             }
-
 
             var x = document.getElementById('x');
             var y = document.getElementById('y');

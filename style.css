@@ -59,7 +59,8 @@ h1 {
 
 #quote {
     border: 1px solid #A33327;
-    height: 400px;
+    border-radius: 20px;
+    height: 500px;
     margin-top: 5%;
 }
 
@@ -248,49 +249,42 @@ input[type=range]:focus::-ms-fill-upper {
 }
 
 .bvol {
-    text-align: center;
+    text-align: left;
     font-size: 18px;
     line-height: 30px;
-    height: 30px;
-    background-color: #EEEEEE;
-    position: absolute;
-    width: 32px;
-    bottom: calc(100% + 3px);
-    right: 0px;
+    display: inline-block;
+    width: 50%;
+}
+
+.boxvol {
+    width: 40%;
 }
 
 .stat_box {
+    background-color: #EEEEEE;
     font-family: 'Times';
     line-height: 20px;
     height: 42px;
-    width: 80px;
-    border: 2px solid rgba(0, 0, 0, 0.3);
-    border-radius: 5px;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     position: absolute;
-    right: 10px;
+    bottom: 19%;
 }
 
 .stat_name {
     z-index: 1;
     text-align: center;
-    height: 50%;
-    width: 100%;
-    background-color: #EEEEEE;
-    border-radius: 3px;
-    position: absolute;
-    left: 0px;
-    top: 0px;
+    padding-left: 20px;
 }
 
 .stat_value {
     text-align: center;
     height: 50%;
-    width: 100%;
-    background-color: #FFFFFF;
+    width: 40%;
+    background-color: #EEEEEE;
     border-radius: 3px;
-    position: absolute;
-    left: 0px;
-    top: 50%;
 }
 
 .axis {
@@ -428,4 +422,60 @@ canvas {
     position: absolute;
     top: 30px;
     left: 3px;
+}
+
+.statContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    height: 500px;
+    width: 100%;
+}
+
+.insertmodel {
+    height: 450px;
+    position: relative;
+    width: 95%;
+}
+
+.dragdrop {
+    height: 400px;
+    width: 100%;
+}
+
+.dropSTL {
+    background-color: #FFF;
+}
+
+#unit_bvol {
+    padding: 5px;
+}
+
+#box_vol {
+    padding: 5px;
+}
+
+#reset {
+    border: 1px solid #917164;
+    background-color: #AD8174;
+    color: #FFF;
+    font-weight: bold;
+    position: absolute;
+    left: 0;
+    bottom: 10%;
+}
+
+#size_inputs {
+    height: 100px;
+    width: 100px;
+    position: absolute;
+    bottom: 10%;
+    right: 0;
+}
+
+.scalediv {
+    position: absolute;
+    right: 0;
+    bottom: 10%;
 }
