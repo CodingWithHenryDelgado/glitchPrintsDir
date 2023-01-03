@@ -270,13 +270,16 @@ input[type=range]:focus::-ms-fill-upper {
     justify-content: space-between;
     align-items: center;
     position: absolute;
-    bottom: 19%;
+    bottom: 22%;
+}
+
+.cords_box {
+    width: 50px;
 }
 
 .stat_name {
     z-index: 1;
     text-align: center;
-    padding-left: 20px;
 }
 
 .stat_value {
@@ -441,6 +444,7 @@ canvas {
 
 .dragdrop {
     height: 400px;
+    position: relative;
     width: 100%;
 }
 
@@ -463,19 +467,21 @@ canvas {
     font-weight: bold;
     position: absolute;
     left: 0;
-    bottom: 10%;
+    bottom: 12%;
 }
 
 #size_inputs {
+    display: none;
+    /* justify-content: space-evenly;
+    align-items: center; */
     height: 100px;
-    width: 100px;
+    width: 100%;
     position: absolute;
-    bottom: 10%;
-    right: 0;
+    bottom: 25%;
 }
 
 .scalediv {
     position: absolute;
     right: 0;
-    bottom: 10%;
+    bottom: 12%;
 }
