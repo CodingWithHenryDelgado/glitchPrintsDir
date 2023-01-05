@@ -10,11 +10,17 @@ html {
     overflow: hidden;
 }
 
-h1 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
     color: #C7493A;
     font-family: 'Roboto Mono', monospace;
     text-align: center;
     text-transform: uppercase;
+    margin-bottom: 0;
 }
 
 .nav {
@@ -64,181 +70,6 @@ h1 {
     margin-top: 5%;
 }
 
-input[type=range][orient=vertical] {
-    writing-mode: bt-lr;
-    /* IE */
-    -webkit-appearance: slider-vertical;
-    /* WebKit */
-    height: calc(100% - 80px);
-    width: 40px;
-    position: absolute;
-    bottom: 15px;
-    left: 10px;
-}
-
-input[type=range] {
-    height: 8px;
-    width: 100%;
-    margin: 12px 0;
-    -webkit-appearance: none;
-}
-
-input[type=range]:focus {
-    outline: none;
-}
-
-input[type=range]::-webkit-slider-thumb {
-    /* Chrome */
-    height: 10px;
-    width: 18px;
-    background: #F2F4F8;
-    box-shadow: 0px 0px 1px #000000;
-    border: 1px solid #000000;
-    border-radius: 4px;
-    cursor: pointer;
-    -webkit-appearance: none;
-}
-
-input[type=range]::-moz-range-thumb {
-    /* Firefox */
-    height: 10px;
-    width: 18px;
-    background: #F2F4F8;
-    box-shadow: 0px 0px 1px #000000;
-    border: 1px solid #000000;
-    border-radius: 4px;
-    cursor: pointer;
-}
-
-input[type=range]::-webkit-slider-runnable-track {
-    /* Chrome */
-    height: 100%;
-    width: 8px;
-    background: linear-gradient(to bottom, white, #8AB7AF 15%, #4A786F 85%, black);
-    box-shadow: 0px 0px 1px #3A5E57;
-    border: 1px solid #000000;
-    border-radius: 2px;
-    cursor: pointer;
-    animate: 0.1s;
-}
-
-input[type=range]::-moz-range-track {
-    /* Firefox */
-    height: calc(100% - 5px);
-    width: 6px;
-    background: linear-gradient(to bottom, white, #8AB7AF 10%, #4A786F 90%, black);
-    box-shadow: 0px 0px 1px #3A5E57;
-    border: 1px solid #000000;
-    border-radius: 2px;
-    cursor: pointer;
-    animate: 0.1s;
-}
-
-input[type=range]::-ms-track {
-    height: 100%;
-    width: 8px;
-    background: transparent;
-    border-color: transparent;
-    color: transparent;
-    cursor: pointer;
-    animate: 0.1s;
-}
-
-input[type=range]::-ms-fill-lower {
-    background: #67A297;
-    box-shadow: 0px 0px 2px #3A5E57;
-    border: 1px solid #000000;
-    border-radius: 4px;
-}
-
-input[type=range]::-ms-fill-upper {
-    background: #67A297;
-    box-shadow: 0px 0px 2px #3A5E57;
-    border: 1px solid #000000;
-    border-radius: 4px;
-}
-
-input[type=range]::-ms-thumb {
-    height: 18px;
-    width: 18px;
-    margin-top: 1px;
-    background: #F2F4F8;
-    box-shadow: 0px 0px 1px #000000;
-    border: 1px solid #000000;
-    border-radius: 4px;
-    cursor: pointer;
-}
-
-input[type=range]:focus::-ms-fill-lower {
-    background: #67A297;
-}
-
-input[type=range]:focus::-ms-fill-upper {
-    background: #67A297;
-}
-
-
-.line1 {
-    z-index: 1;
-    width: 100%;
-    height: 100%;
-    background-color: #000000;
-    position: absolute;
-    top: 0px;
-    left: 0px;
-}
-
-.line2 {
-    width: 3px;
-    height: 100%;
-    background-color: #888888;
-    position: absolute;
-    top: 0px;
-    left: 100%;
-}
-
-.wtbo {
-    font-size: 15px;
-    height: 100%;
-    width: 100%;
-    font-weight: bold;
-    font-family: 'Arial';
-    color: #EEE;
-    text-shadow: 1px 0 0 #000, 0 -1px 0 #000, 0 1px 0 #000, -1px 0 0 #000;
-}
-
-.h1 {
-    font-size: 21px;
-    height: 30px;
-    line-height: 30px;
-    text-align: center;
-    background-color: #EEEEEE;
-    width: calc(100% - 3px);
-    position: absolute;
-    left: 3px;
-    top: 0px;
-}
-
-.tooltip {
-    z-index: 100;
-    text-align: left;
-    font-size: 16px;
-    line-height: 17px;
-    color: #fff;
-    visibility: hidden;
-    background-color: #333;
-    border-radius: 8px;
-    padding: 4px;
-    position: absolute;
-    right: 3px;
-    top: calc(100% + 6px);
-    width: calc(100% - 3px - 2*4px - 3px);
-}
-
-.h1:hover .tooltip {
-    visibility: visible;
-}
-
 .b1 {
     text-align: center;
     line-height: 19px;
@@ -249,11 +80,11 @@ input[type=range]:focus::-ms-fill-upper {
 }
 
 .bvol {
-    text-align: left;
+    text-align: right;
     font-size: 18px;
     line-height: 30px;
     display: inline-block;
-    width: 50%;
+    width: 60%;
 }
 
 .boxvol {
@@ -270,7 +101,7 @@ input[type=range]:focus::-ms-fill-upper {
     justify-content: space-between;
     align-items: center;
     position: absolute;
-    bottom: 22%;
+    bottom: 19%;
 }
 
 .cords_box {
@@ -291,8 +122,10 @@ input[type=range]:focus::-ms-fill-upper {
 }
 
 .axis {
+    background-color: #FFF;
     height: 21px;
-    width: 400%;
+    width: 150%;
+    padding: 0 5px;
     text-align: left;
     position: absolute;
     left: 21px;
@@ -302,10 +135,9 @@ input[type=range]:focus::-ms-fill-upper {
 #fileselect {
     z-index: 1;
     text-align: center;
-    height: calc(100% + 10px);
+    height: 100%;
     width: 100%;
     position: absolute;
-    bottom: 17px;
     left: 0px;
 }
 
@@ -437,19 +269,25 @@ canvas {
 }
 
 .insertmodel {
+    background-color: #EEE;
+    border-radius: 20px;
     height: 450px;
     position: relative;
     width: 95%;
 }
 
+.insertmodel h2 {
+    color: #689775;
+}
+
 .dragdrop {
     height: 400px;
-    position: relative;
     width: 100%;
 }
 
 .dropSTL {
     background-color: #FFF;
+    height: 275px;
 }
 
 #unit_bvol {
@@ -457,17 +295,20 @@ canvas {
 }
 
 #box_vol {
-    padding: 5px;
+    padding: 0px 15px;
 }
 
 #reset {
     border: 1px solid #917164;
-    background-color: #AD8174;
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+    background-color: #C7493A;
     color: #FFF;
     font-weight: bold;
     position: absolute;
     left: 0;
-    bottom: 12%;
+    width: 100%;
+    bottom: 0%;
 }
 
 #size_inputs {
@@ -481,7 +322,13 @@ canvas {
 }
 
 .scalediv {
+    background-color: #EEE;
     position: absolute;
     right: 0;
-    bottom: 12%;
+    bottom: 10%;
+    width: 100%;
+}
+
+#scale {
+    width: 48px;
 }
