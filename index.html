@@ -8,6 +8,7 @@
     <title>Glitch Prints!</title>
     <link rel="stylesheet" href="./style.css" />
     <link rel="stylesheet" href="./reset.css" />
+    <link rel="icon" type="image/x-icon" href="favicon.png">
     <meta property="og:title" content="Glitch Prints - Get your 3D models printed" />
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://glitchprints.com/" />
@@ -44,11 +45,65 @@
             <a href="#contact">Contact Me</a>
         </div>
         <div id="quote">
+            <!-- Put Heather saying hi or something -->
+            <!-- Minimize these sections to collapse -->
             <div class="statContainer">
+                <div class="insertmodel strength">
+                    <h2>What's The Right Strength For Me?</h2>
+
+                    <a href="https://all3dp.com/2/infill-3d-printing-what-it-means-and-how-to-use-it/">
+                        <center>
+                            <img src="https://i.all3dp.com/workers/images/fit=cover,w=1000,gravity=0.5x0.5,format=auto/wp-content/uploads/2020/12/14182439/infill-density-can-significantly-affect-material-c-bozarthprime-via-myminifactory-201117_download.jpg"
+                                alt="An image showing the difference between infills." class="images">
+                        </center>
+                    </a>
+                    <p>For most “standard” prints that don’t need to be super strong, we suggest using an infill density
+                        of 15-50%. This density percentage provides okay
+                        strength.</p>
+                    <p>Functional prints need to be strong. Therefore, we recommend using a higher infill: of more than
+                        50%. The payoff will be a stronger and heavier part.</p>
+                    <p>Consider using an infill density of 0-15% for small figurine models meant for display purposes
+                        only. Models printed with this density range will be lightweight and not very strong.</p>
+                    <p>
+                        Keep in mind, however, that the higher the infill density, the less flexible the part will be.
+                    </p>
+
+                    <p class="details"><a
+                            href="https://all3dp.com/2/infill-3d-printing-what-it-means-and-how-to-use-it/">*
+                            All information provided from All3DP.
+                        </a>
+                    </p>
+                </div>
+            </div>
+            <div class="statContainer">
+                <div class="insertmodel detail">
+                    <h2>What's The Right Quality For Me?</h2>
+
+                    <a href="https://www.youtube.com/watch?v=ysVAf9DXvhU">
+                        <center>
+                            <img src="./download.png" alt="An image showing the difference between qualtity."
+                                class="images">
+                        </center>
+                    </a>
+                    <p>If the print has multiple parts that attach or has some details, you would like to keep; I
+                        suggest using standard quality.</p>
+                    <p> If you want all those little details printed for a sculpture like print, then I recommend Full
+                        HD. <span class="details" style="margin: 0;">(Please note that Full HD will take more time, so
+                            there will be a fee.)</span>
+                    </p>
+                    <p>
+                        You can use the draft quality for prints that don't need details or are low poly.
+                    </p>
+                    <p class="details"><a href="https://www.youtube.com/watch?v=ysVAf9DXvhU">*
+                            Image provided by SD3D full video.
+                        </a>
+                    </p>
+                </div>
+            </div>
+            <!-- <div class="statContainer">
                 <div class="insertmodel">
                     <h2>Drop Your Model</h2>
                     <div class="dragdrop">
-                        <!-- ### <START> STL file manager ### -->
                         <div class="dropSTL"
                             style="overflow:hidden; border:0; margin:0; width:calc(100%); position:absolute;">
                             <input type="file" value="internal file" id="fileselect"
@@ -101,12 +156,80 @@
                         </div>
                     </div>
                 </div>
+            </div> -->
+            <!-- <div class="statContainer">
+                <div class="insertmodel">
+                    <h2>Strength</h2>
+                    <div class="select">
+                        <label for="infill">Infill: </label>
+                        <select name="strength" id="strength" onchange="update_strength()">
+                            <option value="fragile">Fragile (5%)</option>
+                            <option value="average" selected>Average (20%)</option>
+                            <option value="durable">Durable (50%)</option>
+                            <option value="heavyduty">Heavy Duty (100%)</option>
+                        </select>
+                    </div>
+
+                    <h2>Quality</h2>
+                    <div class="select">
+                        <label for="detail">Detail: </label>
+                        <select name="detail" id="detail" onchange="update_quality()">
+                            <option value="draft">Draft (0.28mm)</option>
+                            <option value="standard" selected>Standard (0.2mm)</option>
+                            <option value="hd">HD (0.12mm)</option>
+                            <option value="fullhd">Full HD (0.16mm)</option>
+                        </select>
+                    </div>
+
+                    <h2>Color</h2>
+
+                    <div class="select">
+                        <label for="color">Color: </label>
+                        <select name="color" id="color" onchange="update_color()">
+                            <option value="black">Black PLA</option>
+                            <option value="blue">Blue PLA</option>
+                            <option value="gray" selected>Gray PLA</option>
+                            <option value="green">Green PLA</option>
+                            <option value="orange">Orange PLA</option>
+                            <option value="pink">Pink PLA</option>
+                            <option value="transparent">Transparent PLA</option>
+                            <option value="watermelonred">Watermelon Red PLA</option>
+                            <option value="white" selected>White PLA</option>
+                        </select>
+                    </div>
+                    <h2></h2>
+                </div>
+            </div> -->
+            <div class="statContainer">
+                <div class="insertmodel">
+                    <h2>Ready to Order?</h2>
+
+                    <h3>Order Details:</h3>
+
+                    <div style="width:100%;">
+                        <p class="details">*
+                            Prices are evulated by the weight of the print.
+                        </p>
+
+                        <p class="details">*
+                            These details will only be used for confirming the 3D print order and related progress
+                            updates.</p>
+                        <script charset="utf-8" type="text/javascript"
+                            src="//js.hsforms.net/forms/embed/v2.js"></script>
+                        <script>
+                            hbspt.forms.create({
+                                region: "na1",
+                                portalId: "23728019",
+                                formId: "612029db-7738-427d-b7a0-439bc5a1de3a"
+                            });
+                        </script>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
-    </div>
     <script type="module" src="./script.js"></script>
-    <script>
+    <!-- <script>
         const vstl = document.getElementById("vs_iframe"); //view_stl object
         const input = document.getElementById("fileselect");
         const x = document.getElementById("x");
@@ -114,6 +237,8 @@
         const z = document.getElementById("z");
         const svol = document.getElementById("shape_vol");
         const bvol = document.getElementById("box_vol");
+
+        update_quote_text()
 
         var unit_1, unit_2, mult_1, mult_2, fixed;
 
@@ -123,6 +248,8 @@
         vstl.onload = function () {
 
             vstl.contentWindow.postMessage({ msg_type: "get_info" }, "*");
+            vstl.contentWindow.postMessage({ msg_type: 'set_orientation', value: 'bottom' }, '*');
+            vstl.contentWindow.postMessage({ msg_type: 'set_edges', value: 'yes' }, '*');
             window.onmessage = function (e) {
                 if (e.origin == "https://www.viewstl.com" && e.data.msg_type) {
                     if (e.data.msg_type == "info") {
@@ -132,11 +259,17 @@
                         y_axis = e.data.y;
                         z_axis = e.data.z;
                         shape_volume = e.data.volume / 1000;
+                        area = e.data.area;
 
                         update_unit();
+                        update_strength();
                     }
                 }
             }
+        }
+
+        function commas_convert(x) {
+            return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
         }
 
         function refreshIframe(name) {
@@ -184,23 +317,23 @@
                 //1. Round off to 0.1mm if below 1000mm, else round off to 1mm
                 //2. Prevent absurd numbers
 
-                if (scale * x_axis * mult_1 < 1000) {
+                if (scale * x_axis * mult_1 < 210) {
                     x.value = Math.abs(scale * x_axis * mult_1).toFixed(1 + fixed);
-                } else if (scale * x_axis < 10000) {
+                } else if (scale * x_axis < 8.26) {
                     x.value = Math.abs(scale * x_axis * mult_1).toFixed(0 + fixed);
-                } else { x.value = "Huge"; }
+                } else { x.value = "BIG"; }
 
-                if (scale * y_axis * mult_1 < 1000) {
+                if (scale * y_axis * mult_1 < 210) {
                     y.value = Math.abs(scale * y_axis * mult_1).toFixed(1 + fixed);
-                } else if (scale * y_axis < 10000) {
+                } else if (scale * y_axis < 8.26) {
                     y.value = Math.abs(scale * y_axis * mult_1).toFixed(0 + fixed);
-                } else { y.value = "Huge"; }
+                } else { y.value = "BIG"; }
 
-                if (scale * z_axis * mult_1 < 1000) {
+                if (scale * z_axis * mult_1 < 245) {
                     z.value = Math.abs(scale * z_axis * mult_1).toFixed(1 + fixed);
-                } else if (scale * z_axis < 10000) {
+                } else if (scale * z_axis < 9.64) {
                     z.value = Math.abs(scale * z_axis * mult_1).toFixed(0 + fixed);
-                } else { z.value = "Huge"; }
+                } else { z.value = "TALL"; }
             }
             else {
                 x.value = "";
@@ -232,7 +365,6 @@
                     svol.value = (shape_volume * Math.pow(scale, 3) * mult_2).toFixed(0 + fixed);
                 } else {
                     svol.innerHTML = "<a style='font-size:12px;'>Too big!</a>";
-                    //svol.innerHTML = "Too big!";
                 }
             } else {
                 svol.value = "";
@@ -240,7 +372,41 @@
 
             // update_price();
         }
-    </script>
+
+        function update_strength() {
+            var strengthValue = document.getElementById('strength').value;
+            var strength = 0;
+
+            if (strengthValue = "fragile") {
+                strength = 0.05;
+            } else if (strengthValue = "average") {
+                strength = 0.2;
+            } else if (strengthValue = "durable") {
+                strength = 0.5;
+            } else {
+                strength = 1
+            }
+
+            // update_price();
+        }
+
+        function update_quality() {
+            var qualityValue = document.getElementById('detail').value;
+            var quality = 0;
+
+            if (qualityValue = "draft") {
+                quality = 0.28;
+            } else if (qualityValue = "standard") {
+                quality = 0.2;
+            } else if (qualityValue = "hd") {
+                quality = 0.12;
+            } else {
+                quality = 0.16
+            }
+
+            // update_price();
+        }
+    </script> -->
 </body>
 
 </html>
