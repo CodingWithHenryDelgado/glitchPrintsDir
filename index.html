@@ -24,14 +24,15 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Baloo+Thambi+2&family=Metrophobic&family=Roboto+Mono:ital@0;1&display=swap"
         rel="stylesheet">
+    <script async src="https://unpkg.com/es-module-shims@1.3.6/dist/es-module-shims.js"></script>
     <script type="importmap">
             {
                 "imports": {
                     "three": "https://unpkg.com/three@0.138.0/build/three.module.js",
-                    "OrbitControls": "https://unpkg.com/three@0.138.0/examples/jsm/controls/OrbitControls.js"
+                    "three/addons/": "https://unpkg.com/three@0.138.0/examples/jsm/"
                 }
             }
-        </script>
+    </script>
 </head>
 
 <body>
@@ -47,6 +48,9 @@
         <div id="quote">
             <!-- Put Heather saying hi or something -->
             <!-- Minimize these sections to collapse -->
+            <div class="introduction" id="introduction">
+                <h1>Welcome!</h1>
+            </div>
             <div class="statContainer">
                 <div class="insertmodel strength">
                     <h2>What's The Right Strength For Me?</h2>
@@ -229,184 +233,6 @@
         </div>
     </div>
     <script type="module" src="./script.js"></script>
-    <!-- <script>
-        const vstl = document.getElementById("vs_iframe"); //view_stl object
-        const input = document.getElementById("fileselect");
-        const x = document.getElementById("x");
-        const y = document.getElementById("y");
-        const z = document.getElementById("z");
-        const svol = document.getElementById("shape_vol");
-        const bvol = document.getElementById("box_vol");
-
-        update_quote_text()
-
-        var unit_1, unit_2, mult_1, mult_2, fixed;
-
-        function load_local_file(f) { vstl.contentWindow.postMessage({ msg_type: 'load', file: f }, '*'); }
-
-        // STL file viewer - function handler
-        vstl.onload = function () {
-
-            vstl.contentWindow.postMessage({ msg_type: "get_info" }, "*");
-            vstl.contentWindow.postMessage({ msg_type: 'set_orientation', value: 'bottom' }, '*');
-            vstl.contentWindow.postMessage({ msg_type: 'set_edges', value: 'yes' }, '*');
-            window.onmessage = function (e) {
-                if (e.origin == "https://www.viewstl.com" && e.data.msg_type) {
-                    if (e.data.msg_type == "info") {
-                        input.style.display = "none";
-                        input_size = false;
-                        x_axis = e.data.x;
-                        y_axis = e.data.y;
-                        z_axis = e.data.z;
-                        shape_volume = e.data.volume / 1000;
-                        area = e.data.area;
-
-                        update_unit();
-                        update_strength();
-                    }
-                }
-            }
-        }
-
-        function commas_convert(x) {
-            return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-        }
-
-        function refreshIframe(name) {
-            document.getElementById('vs_iframe').contentWindow.postMessage({ msg_type: 'clean' }, '*');
-            var ifr = document.getElementsByName(name)[0];
-            input_size = true;
-            x_axis = 0;
-            y_axis = 0;
-            z_axis = 0;
-            shape_vol = 0;
-            area = 0;
-            input.style.display = "block";
-        }
-
-        function update_unit() {
-            var unit;
-            var radios = document.getElementsByName('unit');
-            for (var i = 0, length = radios.length; i < length; i++) {
-                if (radios[i].checked) {
-                    unit = radios[i].value;
-                    break;
-                }
-            }
-            var mult_0;
-            if (unit == 0) {
-                unit_1 = "mm"; unit_2 = "cm"; fixed = 0;
-                mult_0 = 25.4; mult_1 = 1; mult_2 = 1;
-            } else { //unit == 1
-                unit_1 = "in"; fixed = 1;
-                mult_0 = 1 / 25.4; mult_1 = 1 / 25.4; mult_2 = Math.pow(1 / 25.4, 3) / Math.pow(1 / 10, 3);
-            }
-            update_axis();
-            update_vol();
-        }
-
-        function update_axis() {
-            var scale = document.getElementById('scale').value / 100;
-            if (input_size == true) {
-                x_axis = document.getElementById('x_input').value / mult_1;
-                y_axis = document.getElementById('y_input').value / mult_1;
-                z_axis = document.getElementById('z_input').value / mult_1;
-            }
-
-            if (x_axis + y_axis + z_axis != 0) {
-                //1. Round off to 0.1mm if below 1000mm, else round off to 1mm
-                //2. Prevent absurd numbers
-
-                if (scale * x_axis * mult_1 < 210) {
-                    x.value = Math.abs(scale * x_axis * mult_1).toFixed(1 + fixed);
-                } else if (scale * x_axis < 8.26) {
-                    x.value = Math.abs(scale * x_axis * mult_1).toFixed(0 + fixed);
-                } else { x.value = "BIG"; }
-
-                if (scale * y_axis * mult_1 < 210) {
-                    y.value = Math.abs(scale * y_axis * mult_1).toFixed(1 + fixed);
-                } else if (scale * y_axis < 8.26) {
-                    y.value = Math.abs(scale * y_axis * mult_1).toFixed(0 + fixed);
-                } else { y.value = "BIG"; }
-
-                if (scale * z_axis * mult_1 < 245) {
-                    z.value = Math.abs(scale * z_axis * mult_1).toFixed(1 + fixed);
-                } else if (scale * z_axis < 9.64) {
-                    z.value = Math.abs(scale * z_axis * mult_1).toFixed(0 + fixed);
-                } else { z.value = "TALL"; }
-            }
-            else {
-                x.value = "";
-                y.value = "";
-                z.value = "";
-                bvol.value = "";
-            }
-
-            update_vol();
-        }
-
-        function update_vol() {
-            var scale = document.getElementById('scale').value / 100;
-
-            box_vol = x_axis * y_axis * z_axis * Math.pow(scale, 3) / 1000;
-
-            if (box_vol != 0) {
-                if (box_vol < 10000000) {
-                    bvol.value = (box_vol * mult_2).toFixed(0 + fixed);
-                } else {
-                    bvol.value = "Too big!";
-                }
-            } else {
-                bvol.value = "";
-            }
-
-            if (shape_volume != 0) {
-                if (shape_volume * Math.pow(scale, 3) < 1000000) {
-                    svol.value = (shape_volume * Math.pow(scale, 3) * mult_2).toFixed(0 + fixed);
-                } else {
-                    svol.innerHTML = "<a style='font-size:12px;'>Too big!</a>";
-                }
-            } else {
-                svol.value = "";
-            }
-
-            // update_price();
-        }
-
-        function update_strength() {
-            var strengthValue = document.getElementById('strength').value;
-            var strength = 0;
-
-            if (strengthValue = "fragile") {
-                strength = 0.05;
-            } else if (strengthValue = "average") {
-                strength = 0.2;
-            } else if (strengthValue = "durable") {
-                strength = 0.5;
-            } else {
-                strength = 1
-            }
-
-            // update_price();
-        }
-
-        function update_quality() {
-            var qualityValue = document.getElementById('detail').value;
-            var quality = 0;
-
-            if (qualityValue = "draft") {
-                quality = 0.28;
-            } else if (qualityValue = "standard") {
-                quality = 0.2;
-            } else if (qualityValue = "hd") {
-                quality = 0.12;
-            } else {
-                quality = 0.16
-            }
-
-            // update_price();
-        }
-    </script> -->
 </body>
 
 </html>
