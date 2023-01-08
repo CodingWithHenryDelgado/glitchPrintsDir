@@ -46,13 +46,20 @@
             <a href="#contact">Contact Me</a>
         </div>
         <div id="quote">
-            <!-- Put Heather saying hi or something -->
-            <!-- Minimize these sections to collapse -->
-            <div class="introduction" id="introduction">
+            <div class="introduction">
                 <h1>Welcome!</h1>
+                <div id="introduction"></div>
+                <p><span class="sayhi">Say Hi to Heather!</span></p>
+                <p>Like my love for creating websites, I love 3D Printing. My services are always open; let's work
+                    together to make your creation into life!</p>
+                <p>
+                    If you need any clarifications on printing terminology, please <strong>click on</strong> the blocks
+                    below for more
+                    detail!
+                </p>
             </div>
             <div class="statContainer">
-                <div class="insertmodel strength">
+                <div class="insertmodel strength close" id="strength">
                     <h2>What's The Right Strength For Me?</h2>
 
                     <a href="https://all3dp.com/2/infill-3d-printing-what-it-means-and-how-to-use-it/">
@@ -80,7 +87,7 @@
                 </div>
             </div>
             <div class="statContainer">
-                <div class="insertmodel detail">
+                <div class="insertmodel detail close" id="quality">
                     <h2>What's The Right Quality For Me?</h2>
 
                     <a href="https://www.youtube.com/watch?v=ysVAf9DXvhU">
@@ -104,106 +111,6 @@
                     </p>
                 </div>
             </div>
-            <!-- <div class="statContainer">
-                <div class="insertmodel">
-                    <h2>Drop Your Model</h2>
-                    <div class="dragdrop">
-                        <div class="dropSTL"
-                            style="overflow:hidden; border:0; margin:0; width:calc(100%); position:absolute;">
-                            <input type="file" value="internal file" id="fileselect"
-                                onchange="load_local_file(this.files[0]);" style="opacity:0;">
-                            <iframe id="vs_iframe" src="https://www.viewstl.com/?embedded"
-                                style="border:0;margin:0;width:100%;height:100%;"></iframe>
-                        </div>
-
-                        <button id="reset" onclick="refreshIframe('viewstl')" style="height:42px;">Reset
-                            STL</button>
-
-                        <div class="scalediv" style="height:42px;">
-
-                            <a class="b1" style="width:45px; left:0px; top:0px;">Scale:</a>
-                            <input id="scale" oninput="update_axis()" value="100" min="0" type="number" step="5"
-                                style="z-index:1; text-align:right; background-color:#e3f7e7;height:14px; position:absolute; left:45px; top:0px;">
-                            <a class="b1" style="width:20px; left:100px; top:0px;">%
-                                <div class="line1" style="width:2px; top:0px; left:100%;"></div>
-                            </a>
-
-                            <div class="b1" style="width:32px; right:0px;"><output id="unit_svol"></output>
-                                <output id="shape_vol"
-                                    style="overflow:hidden; text-align:right; padding-right:2px; background-color:#e3f7e7; width:44px; height:100%; position:absolute; top:0px; right:100%;"></output>
-                                <div class="b1" style="font-size:12px; width:40px; top:0px; right:calc(100% + 46px);">
-                                    Vol.:</div> <a style="font-size:14px; z-index:1; height:20px; right:2px;">cm 3</a>
-                            </div>
-
-                            <a class="b1" style="left:0px; top:21px;">x:
-                                <output id="x" class="axis"></output></a>
-
-                            <a class="b1" style="left:33.3%; top:21px">y:
-                                <output id="y" class="axis"></output></a>
-
-                            <a class="b1" style="left:66.7%; top:21px">z:
-                                <output id="z" class="axis"></output></a>
-
-                        </div>
-
-                        <div class="stat_box">
-                            <div class="stat_value">
-                                <input id="unit" name="unit" type="radio" value="0" onclick="update_unit()"
-                                    checked="checked">MM
-                                <input id="unit" name="unit" type="radio" value="1" onclick="update_unit()">IN
-                            </div>
-                            <div class="bvol">
-                                Box vol:
-                                <output id="box_vol" style="background-color:#e3f7e7;"></output><a
-                                    style="font-size:14px; z-index:1; height:20px; right:2px;">cm 3</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div> -->
-            <!-- <div class="statContainer">
-                <div class="insertmodel">
-                    <h2>Strength</h2>
-                    <div class="select">
-                        <label for="infill">Infill: </label>
-                        <select name="strength" id="strength" onchange="update_strength()">
-                            <option value="fragile">Fragile (5%)</option>
-                            <option value="average" selected>Average (20%)</option>
-                            <option value="durable">Durable (50%)</option>
-                            <option value="heavyduty">Heavy Duty (100%)</option>
-                        </select>
-                    </div>
-
-                    <h2>Quality</h2>
-                    <div class="select">
-                        <label for="detail">Detail: </label>
-                        <select name="detail" id="detail" onchange="update_quality()">
-                            <option value="draft">Draft (0.28mm)</option>
-                            <option value="standard" selected>Standard (0.2mm)</option>
-                            <option value="hd">HD (0.12mm)</option>
-                            <option value="fullhd">Full HD (0.16mm)</option>
-                        </select>
-                    </div>
-
-                    <h2>Color</h2>
-
-                    <div class="select">
-                        <label for="color">Color: </label>
-                        <select name="color" id="color" onchange="update_color()">
-                            <option value="black">Black PLA</option>
-                            <option value="blue">Blue PLA</option>
-                            <option value="gray" selected>Gray PLA</option>
-                            <option value="green">Green PLA</option>
-                            <option value="orange">Orange PLA</option>
-                            <option value="pink">Pink PLA</option>
-                            <option value="transparent">Transparent PLA</option>
-                            <option value="watermelonred">Watermelon Red PLA</option>
-                            <option value="white" selected>White PLA</option>
-                        </select>
-                    </div>
-                    <h2></h2>
-                </div>
-            </div> -->
             <div class="statContainer">
                 <div class="insertmodel">
                     <h2>Ready to Order?</h2>

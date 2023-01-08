@@ -5,7 +5,6 @@
 }
 
 html {
-    height: 100%;
     background: radial-gradient(ellipse at bottom, #1B2735 0%, #090A0F 100%);
     overflow-x: hidden;
     overflow-y: scroll;
@@ -27,6 +26,10 @@ h6 {
 a {
     color: #666;
     text-decoration: none;
+}
+
+.header h1 a {
+    color: #A33327;
 }
 
 .nav {
@@ -81,7 +84,19 @@ a {
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    height: 300px;
+    background-color: #EEE;
+    border-radius: 20px;
+    font-family: 'Metrophobic', sans-serif;
+    margin: 3%;
+    padding: 3%;
+    text-align: left;
+}
+
+.sayhi {
+    color: #666;
+    font-family: 'Roboto Mono', monospace;
+    font-style: italic;
+    font-size: 1rem;
 }
 
 .statContainer {
@@ -105,6 +120,11 @@ a {
     color: #689775;
 }
 
+.insertmodel h3 {
+    text-align: left;
+    margin-left: 5%;
+}
+
 .insertmodel p {
     font-family: 'Metrophobic', sans-serif;
     margin: 5%;
@@ -113,8 +133,10 @@ a {
 
 .hbspt-form {
     margin: 5%;
-    height: 750px;
-    overflow: hidden;
+}
+
+.hs-form-iframe {
+    max-height: 750px !important;
 }
 
 .details {
@@ -127,4 +149,17 @@ a {
 .images {
     margin: 5% 0;
     width: 90%;
+}
+
+.close {
+    height: 100px;
+    overflow: hidden;
+}
+
+.close img {
+    display: none;
+}
+
+#hbspt-form-2460c1b9-2177-4210-9d69-eb0bc7995982 {
+    height: 200px;
 }

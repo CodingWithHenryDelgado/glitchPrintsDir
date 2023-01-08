@@ -2,33 +2,13 @@
 import * as THREE from 'three';
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 
-//JAVASCRIPT
-const strength = document.getElementById("strength");
-strength.addEventListener("click", function () {
-	if (strength.classList.contains("close")) {
-		strength.classList.remove("close");
-	} else {
-		strength.classList.add("close");
-	}
-})
-
-const detail = document.getElementById("quality");
-detail.addEventListener("click", function () {
-	if (detail.classList.contains("close")) {
-		detail.classList.remove("close");
-	} else {
-		detail.classList.add("close");
-	}
-})
-// END OF JAVASCRIPT!
-
 // THREE.JS CODE
 const scene = new THREE.Scene();
 const camera = new THREE.PerspectiveCamera(75, 200 / 200, 1, 100);
 camera.position.set(0, 110, 31);
 
 const renderer = new THREE.WebGLRenderer();
-const container = document.getElementById('introduction');
+const container = document.getElementById('thank-you');
 renderer.setSize(250, 200);
 container.appendChild(renderer.domElement);
 
@@ -65,33 +45,33 @@ let mixer;
 const clock = new THREE.Clock();
 // model
 const loader = new GLTFLoader();
-loader.load('./models/fbx/heather@waving.gltf', function (gltf) {
+loader.load('./models/fbx/heather@thankyou.gltf', function (gltf) {
 
-	scene.add(gltf.scene);
+    scene.add(gltf.scene);
 
-	gltf.animations; // Array<THREE.AnimationClip>
-	gltf.scene; // THREE.Group
-	gltf.scenes; // Array<THREE.Group>
-	gltf.asset; // Object
+    gltf.animations; // Array<THREE.AnimationClip>
+    gltf.scene; // THREE.Group
+    gltf.scenes; // Array<THREE.Group>
+    gltf.asset; // Object
 
-	gltf.scene.scale.set(10, 10, 10, 10);
+    gltf.scene.scale.set(10, 10, 10, 10);
 
-	console.log(gltf.animations.length)
-	mixer = new THREE.AnimationMixer(gltf.scene);
-	let animation = mixer.clipAction(gltf.animations[0]);
-	animation.repetitions = 3;
-	animation.clampWhenFinished = true;
-	animation.enable = true;
+    console.log(gltf.animations.length)
+    mixer = new THREE.AnimationMixer(gltf.scene);
+    let animation = mixer.clipAction(gltf.animations[0]);
+    animation.repetitions = 3;
+    animation.clampWhenFinished = true;
+    animation.enable = true;
 
-	animation.play();
+    animation.play();
 });
 
 function animate() {
-	requestAnimationFrame(animate);
+    requestAnimationFrame(animate);
 
-	const delta = clock.getDelta();
+    const delta = clock.getDelta();
 
-	mixer.update(delta);
-	renderer.render(scene, camera);
+    mixer.update(delta);
+    renderer.render(scene, camera);
 }
 animate();
