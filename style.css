@@ -163,3 +163,20 @@ a {
 #hbspt-form-2460c1b9-2177-4210-9d69-eb0bc7995982 {
     height: 200px;
 }
+
+#hbspt-form-dd591ea5-1a76-48d4-a2cf-083e96bcba05 #hs-form-iframe-0 {
+    max-height: 410px !important;
+    overflow: hidden;
+}
+
+.portfolio_img {
+    border-radius: 20px;
+    height: 300px;
+    width: 250px;
+    object-fit: cover;
+    margin: 5% 0;
+}
+
+.portfolio_img:nth-child(1) {
+    object-fit: fill;
+}
