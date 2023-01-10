@@ -45,7 +45,7 @@ let mixer;
 const clock = new THREE.Clock();
 // model
 const loader = new GLTFLoader();
-loader.load('./models/fbx/heather@thankyou.gltf', function (gltf) {
+loader.load('./models/fbx/heather@thankyou_2.gltf', function (gltf) {
 
     scene.add(gltf.scene);
 
@@ -59,9 +59,9 @@ loader.load('./models/fbx/heather@thankyou.gltf', function (gltf) {
     console.log(gltf.animations.length)
     mixer = new THREE.AnimationMixer(gltf.scene);
     let animation = mixer.clipAction(gltf.animations[0]);
-    animation.repetitions = 3;
-    animation.clampWhenFinished = true;
-    animation.enable = true;
+    // animation.repetitions = 3;
+    // animation.clampWhenFinished = true;
+    // animation.enable = true;
 
     animation.play();
 });
