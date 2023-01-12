@@ -24,12 +24,12 @@ detail.addEventListener("click", function () {
 
 // THREE.JS CODE
 const scene = new THREE.Scene();
-const camera = new THREE.PerspectiveCamera(75, 200 / 200, 1, 100);
+const camera = new THREE.PerspectiveCamera(75, 500 / 500, 1, 100);
 camera.position.set(0, 110, 31);
 
 const renderer = new THREE.WebGLRenderer();
 const container = document.getElementById('introduction');
-renderer.setSize(250, 200);
+renderer.setSize(500, 500);
 container.appendChild(renderer.domElement);
 
 scene.background = new THREE.Color(0xa0a0a0);
