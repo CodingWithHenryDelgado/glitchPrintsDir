@@ -28,6 +28,10 @@ a {
 /* HEADER */
 
 .glitch-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: column;
     width: 100%;
 }
 
@@ -61,7 +65,7 @@ a {
 .nav a:first-child {
     border-top-left-radius: 15px;
     border-bottom-left-radius: 15px;
-    padding-left: 25px;
+    padding-left: 24px;
 }
 
 .nav a:nth-child(2) {
@@ -154,6 +158,9 @@ a {
 
 #introduction,
 #thank-you {
+    background-image: url('./img/hi_this_is_kitty.png');
+    background-repeat: no-repeat;
+    background-size: contain;
     position: relative;
 }
 
@@ -253,9 +260,7 @@ a {
 @media (min-width: 768px) {
 
     .glitch-header {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
+        flex-direction: column;
     }
 
     .header {
