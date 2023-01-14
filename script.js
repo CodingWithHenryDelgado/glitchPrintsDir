@@ -1,6 +1,7 @@
-//Three.JS
+//Import Three.JS
 import * as THREE from 'three';
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
+// END OF IMPORT
 
 //JAVASCRIPT
 const strength = document.getElementById("strength");
@@ -63,6 +64,7 @@ scene.add(grid);
 
 let mixer;
 const clock = new THREE.Clock();
+
 // model
 const loader = new GLTFLoader();
 loader.load('./models/fbx/heather@waving.gltf', function (gltf) {
@@ -76,7 +78,6 @@ loader.load('./models/fbx/heather@waving.gltf', function (gltf) {
 
 	gltf.scene.scale.set(10, 10, 10, 10);
 
-	console.log(gltf.animations.length)
 	mixer = new THREE.AnimationMixer(gltf.scene);
 	let animation = mixer.clipAction(gltf.animations[0]);
 	animation.repetitions = 3;
@@ -94,4 +95,5 @@ function animate() {
 	mixer.update(delta);
 	renderer.render(scene, camera);
 }
+
 animate();
