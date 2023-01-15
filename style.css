@@ -1,3 +1,8 @@
+/* HOMEPAGE + ABOUT ME */
+/* PORTFOLIO */
+/* CONTACT ME */
+/* THANK YOU */
+
 body {
     background: radial-gradient(#1B2735 0%, #090A0F 100%);
 }
@@ -82,12 +87,23 @@ a {
 
 /* END OF HEADER */
 
-/*  */
-.quote {
+/* HOME PAGE */
+.wrapper {
     border: 1px solid #A33327;
     border-radius: 20px;
     height: auto;
     margin-top: 5%;
+}
+
+.bio {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.heather {
+    text-align: center;
 }
 
 .introduction,
@@ -105,22 +121,13 @@ a {
     text-align: left;
 }
 
+/* HEATHER WAVING DIV */
 .introduction canvas {
     max-height: 250px;
     max-width: 250px;
 }
 
-.bio {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-}
-
-.heather {
-    text-align: center;
-}
-
+/* LIKE DETAILS BUT NO MARGIN */
 .sayhi {
     color: #666;
     font-family: 'Roboto Mono', monospace;
@@ -137,7 +144,7 @@ a {
     width: 100%;
 }
 
-.insertmodel {
+.info {
     background-color: #EEE;
     border-radius: 20px;
     margin: 10% 0;
@@ -145,17 +152,18 @@ a {
     width: 95%;
 }
 
-.insertmodel h3 {
+.info h3 {
     text-align: left;
     margin-left: 5%;
 }
 
-.insertmodel p {
+.info p {
     font-family: 'Metrophobic', sans-serif;
     margin: 5%;
     text-align: left;
 }
 
+/* DIV FOR HEATHER'S ANIMATION (BACKGROUND IMAGE WHEN THE ANIMATION TAKES TOO LONG TO LOAD) */
 #introduction,
 #thank-you {
     background-image: url('./img/hi_this_is_kitty.png');
@@ -259,6 +267,8 @@ a {
 
 @media (min-width: 768px) {
 
+    /* TABLET HEADER */
+
     .glitch-header {
         flex-direction: column;
     }
@@ -284,7 +294,11 @@ a {
         padding-right: 34px;
     }
 
-    .quote {
+    /* END OF TABLET HEADER */
+
+    /* TABLET HOMEPAGE + ABOUT US */
+
+    .wrapper {
         margin-top: 2%;
     }
 
@@ -303,7 +317,7 @@ a {
         margin: 0;
     }
 
-    .insertmodel p {
+    .info p {
         margin: 2% 5%;
     }
 
@@ -311,6 +325,18 @@ a {
     .detail.close {
         width: 40%;
     }
+
+    .about-me {
+        font-size: 1.5rem;
+    }
+
+    .about-me h1 {
+        margin: 0;
+    }
+
+    /* END OF TABLET HOMEPAGE AND ABOUT ME  */
+
+    /* TABLET PORTFOLIO */
 
     #portfolio-header {
         font-size: 3rem;
@@ -325,6 +351,10 @@ a {
         width: 85%;
     }
 
+    /* END OF TABLET PORTFOLIO */
+
+    /* TABLET CONTENT */
+
     .contact {
         width: 50%;
     }
@@ -335,23 +365,12 @@ a {
         align-items: center;
     }
 
-    .about-me {
-        font-size: 1.5rem;
-    }
-
-    .about-me h1 {
-        margin: 0;
-    }
+    /* END OF TABLET CONTENT */
 }
 
 @media (min-width: 1024px) {
 
-    .container {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        flex-direction: column;
-    }
+    /* DESKTOP HEADER */
 
     .glitch-header {
         max-width: 1000px;
@@ -375,7 +394,11 @@ a {
         font-size: 2.5rem;
     }
 
-    .quote {
+    /* END OF DESKTOP HEADER */
+
+    /* DESKTOP HEADER + ABOUT US */
+
+    .wrapper {
         max-width: 1000px;
         width: 100%;
     }
@@ -388,11 +411,11 @@ a {
         font-size: 1.75rem;
     }
 
-    .insertmodel {
+    .info {
         margin: 5% 0;
     }
 
-    .insertmodel h2 {
+    .info h2 {
         font-size: 4vh;
         margin-top: 5px;
     }
@@ -409,7 +432,7 @@ a {
         align-items: flex-start;
     }
 
-    .insertmodel {
+    .info {
         width: 75%;
     }
 
@@ -418,7 +441,13 @@ a {
         width: 40%;
     }
 
+    /* END OF DESKTOP HOMEPAGE + ABOUT ME */
+
+    /* DESKTOP PORTFOLIO */
+
     .portfolio-pictures {
         width: 100%;
     }
+
+    /* END OF DESKTOP PORTFOLIO */
 }
