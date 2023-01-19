@@ -30,6 +30,13 @@ a {
     text-decoration: none;
 }
 
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
 /* HEADER */
 
 .glitch-header {
@@ -119,11 +126,6 @@ a {
     margin: 3%;
     padding: 3%;
     text-align: left;
-}
-
-.introduction {
-    height: 250px;
-    max-height: 250px;
 }
 
 /* HEATHER WAVING DIV */
@@ -275,7 +277,7 @@ a {
     /* TABLET HEADER */
 
     .glitch-header {
-        flex-direction: column;
+        flex-direction: row;
     }
 
     .header {
