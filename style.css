@@ -121,6 +121,11 @@ a {
     text-align: left;
 }
 
+.introduction {
+    height: 250px;
+    max-height: 250px;
+}
+
 /* HEATHER WAVING DIV */
 .introduction canvas {
     max-height: 250px;
