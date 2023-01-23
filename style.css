@@ -160,6 +160,10 @@ a {
     width: 95%;
 }
 
+.info h2:hover {
+    cursor: pointer;
+}
+
 .info h3 {
     text-align: left;
     margin-left: 5%;
