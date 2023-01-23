@@ -177,6 +177,8 @@ a {
     background-repeat: no-repeat;
     background-size: contain;
     position: relative;
+    height: 250px;
+    width: 250px;
 }
 
 #introduction p,
