@@ -171,8 +171,7 @@ a {
 }
 
 /* DIV FOR HEATHER'S ANIMATION (BACKGROUND IMAGE WHEN THE ANIMATION TAKES TOO LONG TO LOAD) */
-#introduction,
-#thank-you {
+#heather-canvas {
     background-image: url('./img/hi_this_is_kitty.png');
     background-repeat: no-repeat;
     background-size: contain;
@@ -181,8 +180,7 @@ a {
     width: 250px;
 }
 
-#introduction p,
-#thank-you p {
+#heather-canvas p {
     background-color: rgba(0, 0, 0, 0.7);
     color: #FFF;
     bottom: 0;
@@ -192,8 +190,7 @@ a {
     z-index: 1;
 }
 
-#introduction a,
-#thank-you a {
+#heather-canvas a {
     color: #fff;
 }
 
