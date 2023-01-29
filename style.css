@@ -58,6 +58,10 @@ a {
     width: 100%;
 }
 
+.header {
+    margin-bottom: 1em;
+}
+
 .header h1 a {
     background: -webkit-linear-gradient(left, transparent, #B62F28, transparent);
     color: #EEE;
@@ -225,7 +229,7 @@ a {
 }
 
 .heather h1 {
-    font-size: 3.3em;
+    font-size: 2.5em;
     text-shadow: 4px 4px black;
 }
 
@@ -368,6 +372,7 @@ a {
     }
 
     .header {
+        margin-bottom: 0;
         width: 40%;
     }
 
