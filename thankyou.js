@@ -26,6 +26,8 @@ loader.load('./models/fbx/heather@thankyou_2.gltf', function (gltf) {
     let animation = mixer.clipAction(gltf.animations[0]);
 
     animation.play();
+
+    animate();
 });
 
 function animate() {
@@ -36,4 +38,3 @@ function animate() {
     mixer.update(delta);
     renderer.render(scene, camera);
 }
-animate();

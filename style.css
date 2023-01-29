@@ -20,6 +20,7 @@ body {
 html {
     overflow-x: hidden;
     overflow-y: scroll;
+    scroll-padding-top: 5rem;
 }
 
 h1,
@@ -58,7 +59,12 @@ a {
 }
 
 .header h1 a {
+    background: -webkit-linear-gradient(left, transparent, #B62F28, transparent);
     color: #EEE;
+}
+
+.header h1 a:hover {
+    text-shadow: 3px 3px black;
 }
 
 .nav {
@@ -142,7 +148,13 @@ a {
     border: 1px solid #c6c6c6;
     border-radius: 8px;
     box-shadow: inset 0px 0px 2px 2px rgba(0, 0, 0, 0.3);
+    color: #FFF;
     margin: 1rem;
+}
+
+.ps-div a,
+.ps-div .details {
+    color: #FFF;
 }
 
 /* HEATHER WAVING DIV */
@@ -173,12 +185,18 @@ a {
     border-radius: 20px;
     margin: 10% 5%;
     position: relative;
+    transition: ease;
     width: 95%;
 }
 
 .info h2 {
+    border-bottom: 3px solid;
+    -o-border-image: linear-gradient(to right, transparent, rgba(255, 255, 255, 0.2), transparent);
+    border-image: linear-gradient(to right, transparent, rgba(255, 255, 255, 0.2), transparent);
+    border-image-slice: 1;
+    border-top: 3px solid;
+    color: #000;
     margin-top: 15px;
-    text-shadow: 4px 4px black;
 }
 
 .info h2:hover {
@@ -207,9 +225,7 @@ a {
 }
 
 .heather h1 {
-    font-family: "Final Fantasy Script Collection - Final Fantasy VII";
-    font-size: 4em;
-    letter-spacing: 3px;
+    font-size: 3.3em;
     text-shadow: 4px 4px black;
 }
 
@@ -240,8 +256,15 @@ a {
 }
 
 .close {
+    background-color: transparent;
     height: 100px;
     overflow: hidden;
+}
+
+.close h2 {
+    background: -webkit-linear-gradient(left, transparent, #3E8CA5, transparent);
+    color: #FFF;
+    text-shadow: 2px 2px black;
 }
 
 .close:hover {
@@ -252,6 +275,10 @@ a {
     display: none;
 }
 
+#ready-to-order h3 {
+    color: #000;
+}
+
 /* HUBSPOT FORM */
 
 .hbspt-form {
@@ -259,7 +286,7 @@ a {
 }
 
 .hs-form-iframe {
-    max-height: 750px !important;
+    max-height: 765px !important;
 }
 
 #hbspt-form-2460c1b9-2177-4210-9d69-eb0bc7995982 {
@@ -276,12 +303,40 @@ a {
     overflow: hidden;
 }
 
+.contact {
+    background-color: #EEE;
+    border-radius: 20px;
+    margin: 1em;
+}
+
+.contact h1 {
+    color: #000;
+    font-weight: bold;
+}
+
 /* END OF HUBSPOT FORM */
 
 /* PORTFOLIO */
 
+#portfolio-header {
+    text-transform: uppercase;
+    color: white;
+    font-size: 20px;
+    font-weight: bold;
+    text-shadow: 2px 2px black;
+    padding: 0 4rem 0 4rem;
+    background: -webkit-linear-gradient(left, transparent, #AEAFAE, transparent);
+    border: 0px;
+    border-bottom: 3px solid;
+    -o-border-image: linear-gradient(to right, transparent, rgba(255, 255, 255, 0.2), transparent);
+    border-image: linear-gradient(to right, transparent, rgba(255, 255, 255, 0.2), transparent);
+    border-image-slice: 1;
+    border-top: 3px solid;
+}
+
 .portfolio_img {
     background-color: #BAB3A9;
+    border: 5px solid #FFF;
     border-radius: 20px;
     color: #FFF;
     font-size: 3rem;
@@ -348,12 +403,23 @@ a {
 
     .bio-text {
         font-size: 1.25rem;
+        line-height: 2.5rem;
         width: 50%;
     }
 
     .statContainer {
         justify-content: space-evenly;
         margin: 0;
+    }
+
+    .introduction canvas {
+        max-height: 250px;
+        max-width: 250px;
+    }
+
+    #heather-canvas {
+        height: 250px;
+        width: 250px;
     }
 
     .info p {

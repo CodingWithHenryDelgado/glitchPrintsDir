@@ -24,9 +24,6 @@ loader.load('./models/fbx/heather@waving.gltf', function (gltf) {
 
 	mixer = new THREE.AnimationMixer(gltf.scene);
 	let animation = mixer.clipAction(gltf.animations[0]);
-	animation.repetitions = 3;
-	animation.clampWhenFinished = true;
-	animation.enable = true;
 
 	animation.play();
 
