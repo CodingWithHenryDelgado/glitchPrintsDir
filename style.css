@@ -64,7 +64,6 @@ a {
 
 .header h1 a {
     background: -webkit-linear-gradient(left, transparent, #B62F28, transparent);
-    color: #EEE;
 }
 
 .header h1 a:hover {
