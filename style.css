@@ -337,23 +337,39 @@ a {
     border-top: 3px solid;
 }
 
+.portfolio-div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding: 1em 0;
+}
+
+.portfolio-pictures {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 95%;
+}
+
 .portfolio_img {
     background-color: #BAB3A9;
     border: 5px solid #FFF;
     border-radius: 20px;
     color: #FFF;
+    font-family: 'Metrophobic', sans-serif;
     font-size: 3rem;
-    height: 300px;
     margin: 5% 0;
+    max-width: 200px;
     object-fit: cover;
     text-align: center;
     text-transform: capitalize;
-    width: 250px;
+    width: auto;
 }
 
 .portfolio_img p {
-    margin: 0;
-    padding-top: 30%;
+    min-height: 210px;
 }
 
 .portfolio_img:nth-child(1) {
@@ -453,11 +469,20 @@ a {
     }
 
     .portfolio-pictures {
-        display: flex;
         justify-content: space-between;
         align-items: center;
         flex-wrap: wrap;
-        width: 85%;
+        flex-direction: row;
+    }
+
+    .portfolio_img {
+        max-width: none;
+        width: 300px;
+        max-height: 360px;
+    }
+
+    .portfolio_img p {
+        min-height: 360px;
     }
 
     /* END OF TABLET PORTFOLIO */
@@ -555,7 +580,13 @@ a {
     /* DESKTOP PORTFOLIO */
 
     .portfolio-pictures {
-        width: 100%;
+        justify-content: space-evenly;
+        flex-direction: row;
+    }
+
+    .portfolio_img {
+        width: 250px;
+        max-height: 300px;
     }
 
     /* END OF DESKTOP PORTFOLIO */
