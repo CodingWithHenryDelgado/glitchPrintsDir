@@ -190,6 +190,7 @@ a {
     position: relative;
     transition: ease;
     width: 95%;
+    transition: ease-in 0.5s;
 }
 
 .info h2 {
@@ -262,6 +263,7 @@ a {
     background-color: transparent;
     height: 100px;
     overflow: hidden;
+    transition: ease-out 0.25s;
 }
 
 .close h2 {
